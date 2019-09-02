@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import MessageList from './MessageList';
 import UserInput from './UserInput';
 import Header from './Header';
+import QuickRepliesList from './QuickRepliesList';
 
 
 class ChatWindow extends Component {
@@ -12,6 +13,10 @@ class ChatWindow extends Component {
 
   onUserInputSubmit(message) {
     this.props.onUserInputSubmit(message);
+  }
+
+  onQuickReplyClicked(quickReply) {
+    this.props.onUserInputSubmit(quickReply);
   }
 
   onFilesSelected(filesList) {
@@ -35,6 +40,12 @@ class ChatWindow extends Component {
           messages={messageList}
           imageUrl={this.props.agentProfile.imageUrl}
         />
+        {messageList.length > 0 && (
+          <QuickRepliesList
+            quickReplies={messageList[messageList.length - 1].data.quickReplies}
+            onQuickReplyClicked={this.onQuickReplyClicked.bind(this)}
+          />
+        )}
         <UserInput
           onSubmit={this.onUserInputSubmit.bind(this)}
           onFilesSelected={this.onFilesSelected.bind(this)}
