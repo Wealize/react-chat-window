@@ -124,7 +124,6 @@ Message objects are rendered differently depending on their type. Currently, onl
   }
 }
 
-
 {
   author: 'me',
   type: 'file',
@@ -132,6 +131,26 @@ Message objects are rendered differently depending on their type. Currently, onl
     url: 'somefile.mp3',
     fileName: 'Any old name'
   }
+}
+
+{
+  author: 'them',
+  type: 'text',
+  data: {
+    text: 'some text'
+  },
+  quickReplies: [
+    {
+      author: 'me',
+      type: 'text',
+      data: { text: 'A quick reply' }
+    },
+    {
+      author: 'me',
+      type: 'emoji',
+      data: { emoji: '🤓' }
+    }
+  ]
 }
 
 ```

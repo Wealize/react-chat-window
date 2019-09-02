@@ -42,7 +42,7 @@ class ChatWindow extends Component {
         />
         {messageList.length > 0 && (
           <QuickRepliesList
-            quickReplies={messageList[messageList.length - 1].data.quickReplies}
+            quickReplies={messageList[messageList.length - 1].quickReplies}
             onQuickReplyClicked={this.onQuickReplyClicked.bind(this)}
           />
         )}

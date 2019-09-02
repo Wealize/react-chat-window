@@ -23,8 +23,8 @@ export default [
       url: monsterImgUrl,
       fileName: 'bigBlue.png'
     }},
-  {type: 'text', author: 'them', data: { text: 'No story?', quickReplies: [
-    { type: 'text', author: 'me', data: { text: 'Really?' } },
-    { type: 'emoji', author: 'me', data: { emoji: '🧐' } },
-  ]}},
+  {type: 'text', author: 'them', data: { text: 'Tell me your story!' }, quickReplies: [
+    { type: 'text', author: 'me', data: { text: 'Should I?' } },
+    { type: 'emoji', author: 'me', data: { emoji: '🙊' } },
+  ]},
 ];
