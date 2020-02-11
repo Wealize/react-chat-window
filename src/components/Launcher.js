@@ -5,6 +5,7 @@ import ConsentWindow from './ConsentWindow';
 import launcherIcon from './../assets/logo-no-bg.svg';
 import incomingMessageSound from './../assets/sounds/notification.mp3';
 import launcherIconActive from './../assets/close-icon.png';
+import { DEFAULT_WELCOME_MESSAGE } from './../constants';
 
 class Launcher extends Component {
 
@@ -33,6 +34,8 @@ class Launcher extends Component {
   }
 
   handleClick() {
+    if (this.shouldShowWelcomeMessage()) this.showWelcomeMessage();
+
     if (this.props.handleClick !== undefined) {
       this.props.handleClick();
     } else {
@@ -42,8 +45,19 @@ class Launcher extends Component {
     }
   }
 
+  shouldShowWelcomeMessage() {
+    return !this.state.isOpen && this.props.messageList.length == 0 ;
+  }
+
   shouldShowConsent() {
     return this.props.messageList.length == 0 && !this.state.hideConsent;
+  }
+
+  showWelcomeMessage() {
+    // I'd say this is the cleanest way and
+    // we'll need to specify welcome message depending on locale,
+    // but the chat doesn't support locales right now
+    this.props.onMessageWasSent(DEFAULT_WELCOME_MESSAGE);
   }
 
   handleConsent(e) {
