@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ChatWindow from './ChatWindow';
+import ConsentWindow from './ConsentWindow';
 import launcherIcon from './../assets/logo-no-bg.svg';
 import incomingMessageSound from './../assets/sounds/notification.mp3';
 import launcherIconActive from './../assets/close-icon.png';
@@ -11,7 +12,8 @@ class Launcher extends Component {
     super();
     this.state = {
       launcherIcon,
-      isOpen: false
+      isOpen: false,
+      hideConsent: false
     };
   }
 
@@ -39,12 +41,23 @@ class Launcher extends Component {
       });
     }
   }
+
+  shouldShowConsent() {
+    return this.props.messageList.length == 0 && !this.state.hideConsent;
+  }
+
+  handleConsent(e) {
+    e.preventDefault();
+    this.setState({hideConsent: true});
+  }
+
   render() {
     const isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
     const classList = [
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
+
     return (
       <div id="sc-launcher">
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
@@ -52,15 +65,27 @@ class Launcher extends Component {
           <img className={'sc-open-icon'} src={launcherIconActive} />
           <img className={'sc-closed-icon'} src={launcherIcon} />
         </div>
-        <ChatWindow
-          messageList={this.props.messageList}
-          onUserInputSubmit={this.props.onMessageWasSent}
-          onFilesSelected={this.props.onFilesSelected}
-          agentProfile={this.props.agentProfile}
-          isOpen={isOpen}
-          onClose={this.handleClick.bind(this)}
-          showEmoji={this.props.showEmoji}
-        />
+
+        { this.shouldShowConsent() ?
+          (
+            <ConsentWindow
+              agentProfile={this.props.agentProfile}
+              isOpen={isOpen}
+              onClose={this.handleClick.bind(this)}
+              onConsent={this.handleConsent.bind(this)}
+            />
+          ) : (
+            <ChatWindow
+              messageList={this.props.messageList}
+              onUserInputSubmit={this.props.onMessageWasSent}
+              onFilesSelected={this.props.onFilesSelected}
+              agentProfile={this.props.agentProfile}
+              isOpen={isOpen}
+              onClose={this.handleClick.bind(this)}
+              showEmoji={this.props.showEmoji}
+            />
+          )
+        }
       </div>
     );
   }

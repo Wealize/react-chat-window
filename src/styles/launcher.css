@@ -17,7 +17,7 @@
   position: relative;
   display: block;
   width: 60px;
-  height: 60px;  
+  height: 60px;
   border-radius: 50%;
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -79,4 +79,28 @@
   font-size: 12px;
   font-weight: 500;
   box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.consent-window {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 16px 0;
+  border-radius: 4px;
+  margin: 0 0.5em;
+  margin-bottom: 5px;
+}
+
+.consent-body {
+  padding: 17px 50px;
+}
+
+.green {
+  color: white;
+  background-color: green;
+}
+
+.red {
+  color: white;
+  background-color: red;
 }
