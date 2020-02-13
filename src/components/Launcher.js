@@ -50,7 +50,11 @@ class Launcher extends Component {
   }
 
   shouldShowConsent() {
-    return this.props.messageList.length == 0 && !this.state.hideConsent;
+    return (
+      this.props.agentProfile.requireConsentFromUser &&
+      this.props.messageList.length == 0 &&
+      !this.state.hideConsent
+    );
   }
 
   showWelcomeMessage() {

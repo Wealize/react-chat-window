@@ -69,7 +69,8 @@ class Demo extends Component {
       <Launcher
         agentProfile={{
           teamName: 'react-chat-window',
-          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+          requireConsentFromUser: true
         }}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
         messageList={this.state.messageList}
@@ -92,7 +93,7 @@ Launcher props:
 
 |      prop        | type   | required | description |
 |------------------|--------|----------|-------------|
-| agentProfile     | [object](#agent-profile-objects) | yes | Represents your product or service's customer service agent. Fields: imageUrl (string), teamName (string). |
+| agentProfile     | [object](#agent-profile-objects) | yes | Represents your product or service's customer service agent. Fields: imageUrl (string), teamName (string), requireConsentFromUser (boolean) |
 | handleClick      | function | yes | Intercept the click event on the launcher. No argument sent when function is called. |
 | isOpen           | boolean | yes | Force the open/close state of the chat window. If this is not set, it will open and close when clicked. |
 | messageList      | [[message](#message-objects)] | yes | An array of message objects to be rendered as a conversation. |
