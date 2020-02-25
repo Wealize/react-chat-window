@@ -80,6 +80,7 @@ class Demo extends Component {
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         showEmoji
+        showFileIcon
       />
       <img className="demo-monster-img" src={monsterImgUrl} />
       <Footer />

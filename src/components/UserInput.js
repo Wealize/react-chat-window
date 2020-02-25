@@ -20,7 +20,7 @@ class UserInput extends Component {
   }
 
   componentDidMount() {
-    this.emojiPickerButton = document.querySelector('#sc-emoji-picker-button'); 
+    this.emojiPickerButton = document.querySelector('#sc-emoji-picker-button');
   }
 
   handleKeyDown(event) {
@@ -105,7 +105,7 @@ class UserInput extends Component {
   )
 
   _renderSendOrFileIcon() {
-    if (this.state.inputHasText) {
+    if (this.state.inputHasText || !this.props.showFileIcon) {
       return (
         <div className="sc-user-input--button">
           <SendIcon onClick={this._submitText.bind(this)} />
@@ -162,7 +162,8 @@ class UserInput extends Component {
 UserInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func.isRequired,
-  showEmoji: PropTypes.bool
+  showEmoji: PropTypes.bool,
+  showFileIcon: PropTypes.bool,
 };
 
 export default UserInput;

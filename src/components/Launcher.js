@@ -101,6 +101,7 @@ class Launcher extends Component {
               isOpen={isOpen}
               onClose={this.handleClick.bind(this)}
               showEmoji={this.props.showEmoji}
+              showFileIcon={this.props.showFileIcon}
             />
           )
         }
@@ -127,11 +128,13 @@ Launcher.propTypes = {
   messageList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
   showEmoji: PropTypes.bool,
+  showFileIcon: PropTypes.bool,
 };
 
 Launcher.defaultProps = {
   newMessagesCount: 0,
-  showEmoji: true
+  showEmoji: true,
+  showFileIcon: true
 };
 
 export default Launcher;

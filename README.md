@@ -102,6 +102,7 @@ Launcher props:
 | onFilesSelected  | function([fileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList)) | no | Called after file has been selected from dialogue in chat window. |
 | onMessageWasSent | function([message](#message-objects)) | yes | Called when a message is sent, with a message object as an argument. |
 | showEmoji        | boolean | no | Whether or not to show the emoji button in the input bar. Defaults to `true`.
+| showFileIcon     | boolean | no | Whether or not to show the file button in the input bar. Defaults to `true`.
 
 
 ### Message Objects
