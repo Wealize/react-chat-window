@@ -103,11 +103,12 @@ Launcher props:
 | onMessageWasSent | function([message](#message-objects)) | yes | Called when a message is sent, with a message object as an argument. |
 | showEmoji        | boolean | no | Whether or not to show the emoji button in the input bar. Defaults to `true`.
 | showFileIcon     | boolean | no | Whether or not to show the file button in the input bar. Defaults to `true`.
+| showWelcomeMessage | function | no | Called when we opened the chat and still does not contain. |
 
 
 ### Message Objects
 
-Message objects are rendered differently depending on their type. Currently, only text, file, and emoji types are supported. Each message object has an `author` field which can have the value 'me' or 'them'.
+Message objects are rendered differently depending on their type. Currently, only text, file, emoji, image, video and audio types are supported. Each message object has an `author` field which can have the value 'me' or 'them'.
 
 ``` javascript
 {
@@ -136,6 +137,30 @@ Message objects are rendered differently depending on their type. Currently, onl
 }
 
 {
+  author: 'me',
+  type: 'image',
+  data: {
+    url: 'somefile.jpg'
+  }
+}
+
+{
+  author: 'me',
+  type: 'audio',
+  data: {
+    url: 'somefile.mp3',
+  }
+}
+
+{
+  author: 'me',
+  type: 'video',
+  data: {
+    url: 'somefile.mp4',
+  }
+}
+
+{
   author: 'them',
   type: 'text',
   data: {
@@ -154,6 +179,7 @@ Message objects are rendered differently depending on their type. Currently, onl
     }
   ]
 }
+
 
 ```
 
