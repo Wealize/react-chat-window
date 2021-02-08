@@ -29,6 +29,13 @@ class ChatWindow extends Component {
       'sc-chat-window',
       (this.props.isOpen ? 'opened' : 'closed')
     ];
+    let lastMessage = messageList[messageList.length - 1];
+    let hideUserInput = !!(
+      this.props.hideUserInputWithQuickReplies &&
+      lastMessage.quickReplies &&
+      lastMessage.quickReplies.length > 0
+    );
+
     return (
       <div className={classList.join(' ')}>
         <Header
@@ -42,16 +49,18 @@ class ChatWindow extends Component {
         />
         {messageList.length > 0 && (
           <QuickRepliesList
-            quickReplies={messageList[messageList.length - 1].quickReplies}
+            quickReplies={lastMessage.quickReplies}
             onQuickReplyClicked={this.onQuickReplyClicked.bind(this)}
           />
         )}
-        <UserInput
-          onSubmit={this.onUserInputSubmit.bind(this)}
-          onFilesSelected={this.onFilesSelected.bind(this)}
-          showEmoji={this.props.showEmoji}
-          showFileIcon={this.props.showFileIcon}
-        />
+        {!hideUserInput && (
+          <UserInput
+            onSubmit={this.onUserInputSubmit.bind(this)}
+            onFilesSelected={this.onFilesSelected.bind(this)}
+            showEmoji={this.props.showEmoji}
+            showFileIcon={this.props.showFileIcon}
+          />
+        )}
       </div>
     );
   }
@@ -64,7 +73,8 @@ ChatWindow.propTypes = {
   onFilesSelected: PropTypes.func,
   onUserInputSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
-  showFileIcon: PropTypes.bool
+  showFileIcon: PropTypes.bool,
+  hideUserInputWithQuickReplies: PropTypes.bool
 };
 
 export default ChatWindow;

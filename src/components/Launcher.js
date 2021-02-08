@@ -96,6 +96,7 @@ class Launcher extends Component {
               onClose={this.handleClick.bind(this)}
               showEmoji={this.props.showEmoji}
               showFileIcon={this.props.showFileIcon}
+              hideUserInputWithQuickReplies={this.props.hideUserInputWithQuickReplies}
             />
           )
         }
@@ -124,13 +125,15 @@ Launcher.propTypes = {
   showEmoji: PropTypes.bool,
   showFileIcon: PropTypes.bool,
   showWelcomeMessage: PropTypes.func,
+  hideUserInputWithQuickReplies: PropTypes.bool,
   showStartButton: PropTypes.func
 };
 
 Launcher.defaultProps = {
   newMessagesCount: 0,
   showEmoji: true,
-  showFileIcon: true
+  showFileIcon: true,
+  hideUserInputWithQuickReplies: false
 };
 
 export default Launcher;
