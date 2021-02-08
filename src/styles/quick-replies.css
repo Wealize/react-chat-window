@@ -1,18 +1,28 @@
-.sc-quick-replies {
-  padding: 0px 12px 8px;
+.sc-quick-replies-block {
   max-width: 100%;
   justify-content: center;
 }
 
-.sc-quick-replies.visible {
+.sc-quick-replies-block.visible {
   display: flex;
 }
 
-.sc-quick-replies.hidden {
+.sc-quick-replies-block.hidden {
   display: none;
 }
 
+.sc-quick-replies {
+  display: block;
+  padding: 0px 12px 8px;
+}
+
 .sc-quick-reply {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 12px 8px;
+}
+
+.sc-quick-reply-button {
   max-width: 100px;
   display: block;
   padding: 6px 12px;
@@ -23,19 +33,18 @@
   line-height: 1.4;
   -webkit-font-smoothing: subpixel-antialiased;
   color: #CCCDD1;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
   transition: border-color .2s, background-color .2s, color .2s;
 }
 
-.sc-quick-reply:not(:last-child) {
+.sc-quick-reply-button:not(:last-child) {
   margin-right: 12px;
 }
 
-.sc-quick-reply:hover,
-.sc-quick-reply:focus {
+.sc-quick-reply-button:hover,
+.sc-quick-reply-button:focus {
   border-color: #4e8cff;
   color: white;
   background-color: #4e8cff;

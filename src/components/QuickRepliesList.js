@@ -4,21 +4,25 @@ import PropTypes from 'prop-types';
 class QuickRepliesList extends Component {
   render() {
     const classList = [
-      'sc-quick-replies',
+      'sc-quick-replies-block',
       (this.props.quickReplies ? 'visible' : 'hidden')
     ];
 
     return (
       <div className={classList.join(' ')}>
-        {this.props.quickReplies.map((qr, i) => (
-          <button
-            key={i}
-            className="sc-quick-reply"
-            onClick={() => this.props.onQuickReplyClicked(qr)}
-          >
-            {qr.data[qr.type]}
-          </button>
-        ))}
+        <div className='sc-quick-replies'>
+          {this.props.quickReplies.map((qr, i) => (
+            <div key={i} className='sc-quick-reply'>
+              <button
+                key={i}
+                className="sc-quick-reply-button"
+                onClick={() => this.props.onQuickReplyClicked(qr)}
+              >
+                {qr.data[qr.type]}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
