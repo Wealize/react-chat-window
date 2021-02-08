@@ -35,6 +35,8 @@ class Launcher extends Component {
   handleClick() {
     if (this.shouldShowWelcomeMessage()) this.props.showWelcomeMessage();
 
+    if (this.shouldShowWelcomeMessage()) this.props.showStartButton();
+
     if (this.props.handleClick !== undefined) {
       this.props.handleClick();
     } else {
@@ -121,6 +123,8 @@ Launcher.propTypes = {
   mute: PropTypes.bool,
   showEmoji: PropTypes.bool,
   showFileIcon: PropTypes.bool,
+  showWelcomeMessage: PropTypes.func,
+  showStartButton: PropTypes.func
 };
 
 Launcher.defaultProps = {
