@@ -32,6 +32,7 @@ class ChatWindow extends Component {
     let lastMessage = messageList[messageList.length - 1];
     let hideUserInput = !!(
       this.props.hideUserInputWithQuickReplies &&
+      lastMessage &&
       lastMessage.quickReplies &&
       lastMessage.quickReplies.length > 0
     );
