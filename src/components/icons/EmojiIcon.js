@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 
 const EmojiIcon = ({ tooltip, onClick, isActive }) => (
@@ -35,4 +35,4 @@ const EmojiIcon = ({ tooltip, onClick, isActive }) => (
   </div>
 );
 
-export default EmojiIcon;
+export default EmojiIcon

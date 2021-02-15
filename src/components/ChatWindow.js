@@ -1,73 +1,93 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import MessageList from './MessageList';
 import UserInput from './UserInput';
 import Header from './Header';
 import QuickRepliesList from './QuickRepliesList';
 
 
-class ChatWindow extends Component {
-  constructor(props) {
-    super(props);
+const ChatWindow = (props) => {
+  const {
+    messageList,
+    agentProfile,
+    isOpen,
+    onClose,
+    showEmoji,
+    showFileIcon,
+    onUserInputSubmit,
+    onFilesSelected,
+    hideUserInputWithQuickReplies,
+  } = props
+
+
+  const getLastMessage = () => {
+    if (!messageList) {
+      return null
+    }
+
+    return messageList[
+      messageList.length - 1
+    ]
   }
 
-  onUserInputSubmit(message) {
-    this.props.onUserInputSubmit(message);
+  const isLastMessageQuickReply = () => {
+    let lastMessage = getLastMessage()
+
+    if (lastMessage === null) {
+      return false
+    } else if (lastMessage.quickReplies === undefined || lastMessage.quickReplies === null) {
+      return false
+    } else {
+      return true
+    }
   }
 
-  onQuickReplyClicked(quickReply) {
-    this.props.onUserInputSubmit(quickReply);
-  }
+  const isInputHidden = () => {
+    let lastMessage = getLastMessage()
 
-  onFilesSelected(filesList) {
-    this.props.onFilesSelected(filesList);
-  }
+    if (lastMessage === null) {
+      return false
+    }
 
-  render() {
-    let messageList = this.props.messageList || [];
-    let classList = [
-      'sc-chat-window',
-      (this.props.isOpen ? 'opened' : 'closed')
-    ];
-    let lastMessage = messageList[messageList.length - 1];
-    let hideUserInput = !!(
-      this.props.hideUserInputWithQuickReplies &&
+    return (
+      hideUserInputWithQuickReplies &&
       lastMessage &&
       lastMessage.quickReplies &&
       lastMessage.quickReplies.length > 0
-    );
-
-    return (
-      <div className={classList.join(' ')}>
-        <Header
-          teamName={this.props.agentProfile.teamName}
-          imageUrl={this.props.agentProfile.imageUrl}
-          onClose={this.props.onClose}
-        />
-        <MessageList
-          messages={messageList}
-          imageUrl={this.props.agentProfile.imageUrl}
-        />
-        {messageList.length > 0 && (
-          <QuickRepliesList
-            quickReplies={lastMessage.quickReplies}
-            onQuickReplyClicked={this.onQuickReplyClicked.bind(this)}
-          />
-        )}
-        {!hideUserInput && (
-          <UserInput
-            onSubmit={this.onUserInputSubmit.bind(this)}
-            onFilesSelected={this.onFilesSelected.bind(this)}
-            showEmoji={this.props.showEmoji}
-            showFileIcon={this.props.showFileIcon}
-          />
-        )}
-      </div>
-    );
+    )
   }
+
+  return (
+    <div className={['sc-chat-window', (isOpen ? 'opened' : 'closed')].join(' ')}>
+      <Header
+        teamName={agentProfile.teamName}
+        imageUrl={agentProfile.imageUrl}
+        onClose={onClose}
+      />
+      <MessageList
+        messages={messageList}
+      />
+
+      {isLastMessageQuickReply() && (
+        <QuickRepliesList
+          message={getLastMessage()}
+          onQuickReplyClicked={onUserInputSubmit}
+        />
+      )}
+      {!isInputHidden() && (
+        <UserInput
+          onSubmit={onUserInputSubmit}
+          onFilesSelected={onFilesSelected}
+          showEmoji={showEmoji}
+          showFileIcon={showFileIcon}
+        />
+      )}
+    </div>
+  )
 }
 
 ChatWindow.propTypes = {
+  messageList: PropTypes.array,
   agentProfile: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
@@ -76,6 +96,10 @@ ChatWindow.propTypes = {
   showEmoji: PropTypes.bool,
   showFileIcon: PropTypes.bool,
   hideUserInputWithQuickReplies: PropTypes.bool
-};
+}
 
-export default ChatWindow;
+ChatWindow.defaultProps = {
+  messageList: []
+}
+
+export default ChatWindow

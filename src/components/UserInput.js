@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import SendIcon from './icons/SendIcon';
 import FileIcon from './icons/FileIcon';
 import EmojiIcon from './icons/EmojiIcon';
@@ -7,163 +7,184 @@ import PopupWindow from './popups/PopupWindow';
 import EmojiPicker from './emoji-picker/EmojiPicker';
 
 
-class UserInput extends Component {
+const UserInput = (props) => {
+  const [input, setInput] = useState(null)
+  const [inputActive, setInputActive] = useState(false)
+  const [inputHasText, setInputHasText] = useState(false)
+  const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
+  const [emojiFilter, setEmojiFilter] = useState('')
+  const [emojiPickerButton, setEmojiPickerButton] = useState(null)
+  const [fileUploadButton, setFileUploadButton] = useState(null)
 
-  constructor() {
-    super();
-    this.state = {
-      inputActive: false,
-      inputHasText: false,
-      emojiPickerIsOpen: false,
-      emojiFilter: ''
-    };
-  }
+  const {
+    onSubmit,
+    onFilesSelected,
+    showEmoji,
+    showFileIcon
+  } = props
 
-  componentDidMount() {
-    this.emojiPickerButton = document.querySelector('#sc-emoji-picker-button');
-  }
+  useState(() => {
+    setEmojiPickerButton(
+      document.querySelector('#sc-emoji-picker-button')
+    )
+  }, [])
 
-  handleKeyDown(event) {
+  useState(() => {
+    console.log(input)
+  }, [input])
+
+  const handleKeyDown = (event) => {
     if (event.keyCode === 13 && !event.shiftKey) {
-      return this._submitText(event);
+      return _submitText(event)
     }
   }
 
-  handleKeyUp(event) {
-    const inputHasText = event.target.innerHTML.length !== 0 &&
-      event.target.innerText !== '\n';
-    this.setState({ inputHasText });
+  const handleKeyUp = (event) => {
+    const hasText = event.target.innerHTML.length !== 0 &&
+      event.target.innerText !== '\n'
+    setInputHasText(hasText)
   }
 
-  _showFilePicker() {
-    this._fileUploadButton.click();
+  const _showFilePicker = () => {
+    fileUploadButton.click()
   }
 
-  toggleEmojiPicker = (e) => {
-    e.preventDefault();
-    if (!this.state.emojiPickerIsOpen) {
-      this.setState({ emojiPickerIsOpen: true });
+  const toggleEmojiPicker = (e) => {
+    e.preventDefault()
+    if (!emojiPickerIsOpen) {
+      setEmojiPickerIsOpen(true)
     }
   }
 
-  closeEmojiPicker = (e) => {
-    if (this.emojiPickerButton.contains(e.target)) {
-      e.stopPropagation();
-      e.preventDefault();
+  const closeEmojiPicker = (e) => {
+    if (emojiPickerButton.contains(e.target)) {
+      e.stopPropagation()
+      e.preventDefault()
     }
-    this.setState({ emojiPickerIsOpen: false });
+
+    setEmojiPickerIsOpen(false)
   }
 
-  _submitText(event) {
-    event.preventDefault();
-    const text = this.userInput.textContent;
+  const _submitText = (event) => {
+    event.preventDefault()
+    const text = input.textContent
     if (text && text.length > 0) {
-      this.props.onSubmit({
+      onSubmit({
         author: 'me',
         type: 'text',
         data: { text }
-      });
-      this.userInput.innerHTML = '';
+      })
+
+      console.log('texto normal')
+
+      setInput({
+        ...input,
+        innerHTML: ""
+      })
+
+      // this.userInput.innerHTML = ''
     }
   }
 
-  _onFilesSelected(event) {
+  const _onFilesSelected = (event) => {
     if (event.target.files && event.target.files.length > 0) {
-      this.props.onFilesSelected(event.target.files);
+      onFilesSelected(event.target.files)
     }
   }
 
-  _handleEmojiPicked = (emoji) => {
-    this.setState({ emojiPickerIsOpen: false });
-    if(this.state.inputHasText) {
-      this.userInput.innerHTML += emoji;
+  const _handleEmojiPicked = (emoji) => {
+    setEmojiPickerIsOpen(false)
+    if (inputHasText) {
+      setInput({
+        ...input,
+        innerHTML: input.innerHTML + emoji
+      })
+      console.log('con emoji')
+      // this.userInput.innerHTML += emoji
     } else {
-      this.props.onSubmit({
+      onSubmit({
         author: 'me',
         type: 'emoji',
         data: { emoji }
-      });
+      })
     }
   }
 
-  handleEmojiFilterChange = (event) => {
-    const emojiFilter = event.target.value;
-    this.setState({ emojiFilter });
+  const handleEmojiFilterChange = (event) => {
+    setEmojiFilter(event.target.value)
   }
 
-  _renderEmojiPopup = () => (
+  const _renderEmojiPopup = () => (
     <PopupWindow
-      isOpen={this.state.emojiPickerIsOpen}
-      onClickedOutside={this.closeEmojiPicker}
-      onInputChange={this.handleEmojiFilterChange}
+      isOpen={emojiPickerIsOpen}
+      onClickedOutside={closeEmojiPicker}
+      onInputChange={handleEmojiFilterChange}
     >
       <EmojiPicker
-        onEmojiPicked={this._handleEmojiPicked}
-        filter={this.state.emojiFilter}
+        onEmojiPicked={_handleEmojiPicked}
+        filter={emojiFilter}
       />
     </PopupWindow>
   )
 
-  _renderSendOrFileIcon() {
-    if (this.state.inputHasText || !this.props.showFileIcon) {
+  const _renderSendOrFileIcon = () => {
+    if (inputHasText || !showFileIcon) {
       return (
         <div className="sc-user-input--button">
-          <SendIcon onClick={this._submitText.bind(this)} />
+          <SendIcon onClick={_submitText} />
         </div>
-      );
+      )
     }
+
     return (
       <div className="sc-user-input--button">
-        <FileIcon onClick={this._showFilePicker.bind(this)} />
+        <FileIcon onClick={_showFilePicker} />
         <input
           type="file"
           name="files[]"
           multiple
-          ref={(e) => { this._fileUploadButton = e; }}
-          onChange={this._onFilesSelected.bind(this)}
+          ref={(e) => setFileUploadButton(e)}
+          onChange={_onFilesSelected}
         />
       </div>
-    );
+    )
   }
 
-  render() {
-    const { emojiPickerIsOpen, inputActive } = this.state;
-    return (
-      <form className={`sc-user-input ${(inputActive ? 'active' : '')}`}>
-        <div
-          role="button"
-          tabIndex="0"
-          onFocus={() => { this.setState({ inputActive: true }); }}
-          onBlur={() => { this.setState({ inputActive: false }); }}
-          ref={(e) => { this.userInput = e; }}
-          onKeyDown={this.handleKeyDown.bind(this)}
-          onKeyUp={this.handleKeyUp.bind(this)}
-          contentEditable="true"
-          placeholder="Write a reply..."
-          className="sc-user-input--text"
-        >
+  return (
+    <form className={`sc-user-input ${(inputActive ? 'active' : '')}`}>
+      <div
+        role="button"
+        tabIndex="0"
+        onFocus={() => setInputActive(true)}
+        onBlur={() => setInputActive(false)}
+        ref={(e) => setInput(e)}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        contentEditable="true"
+        placeholder="Write a reply..."
+        className="sc-user-input--text"
+      >
+      </div>
+      <div className="sc-user-input--buttons">
+        <div className="sc-user-input--button"></div>
+        <div className="sc-user-input--button">
+          {showEmoji && <EmojiIcon
+            onClick={toggleEmojiPicker}
+            isActive={emojiPickerIsOpen}
+            tooltip={_renderEmojiPopup()}
+          />}
         </div>
-        <div className="sc-user-input--buttons">
-          <div className="sc-user-input--button"></div>
-          <div className="sc-user-input--button">
-            {this.props.showEmoji && <EmojiIcon
-              onClick={this.toggleEmojiPicker}
-              isActive={emojiPickerIsOpen}
-              tooltip={this._renderEmojiPopup()}
-            />}
-          </div>
-          {this._renderSendOrFileIcon()}
-        </div>
-      </form>
-    );
-  }
+        {_renderSendOrFileIcon()}
+      </div>
+    </form>
+  )
 }
 
 UserInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
-  showFileIcon: PropTypes.bool,
-};
+  showFileIcon: PropTypes.bool
+}
 
-export default UserInput;
+export default UserInput

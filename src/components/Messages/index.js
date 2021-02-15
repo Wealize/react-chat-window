@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TextMessage from './TextMessage';
 import EmojiMessage from './EmojiMessage';
 import FileMessage from './FileMessage';
@@ -6,44 +6,39 @@ import AudioMessage from './AudioMessage';
 import VideoMessage from './VideoMessage';
 import ImageMessage from './ImageMessage';
 import chatIconUrl from './../../assets/chat-icon.svg';
+import MarkdownView from 'react-showdown'
 
 
-class Message extends Component {
-
-  _renderMessageOfType(type) {
+const Message = (props) => {
+  const _renderMessageOfType = (type) => {
     switch(type) {
-    case 'text':
-      return <TextMessage {...this.props.message} />;
-    case 'emoji':
-      return <EmojiMessage {...this.props.message} />;
-    case 'file':
-      return <FileMessage {...this.props.message} />;
-    case 'image':
-      return <ImageMessage {...this.props.message} />;
-    case 'video':
-      return <VideoMessage {...this.props.message} />;
-    case 'audio':
-      return <AudioMessage {...this.props.message} />;
-    default:
-      console.error(`Attempting to load message with unsupported file type '${type}'`);
+      case 'text':
+        return <TextMessage {...props.message} />
+      case 'emoji':
+        return <EmojiMessage {...props.message} />
+      case 'file':
+        return <FileMessage {...props.message} />
+      case 'image':
+        return <ImageMessage {...props.message} />
+      case 'video':
+        return <VideoMessage {...props.message} />
+      case 'audio':
+        return <AudioMessage {...props.message} />
+      default:
+        console.error(`Attempting to load message with unsupported file type '${type}'`);
     }
   }
 
-  render () {
-    let contentClassList = [
-      'sc-message--content',
-      (this.props.message.author === 'me' ? 'sent' : 'received')
-    ];
-    return (
+  return (
       <div className="sc-message">
-        <div className={contentClassList.join(' ')}>
+        <div className={['sc-message--content', (props.message.author === 'me' ? 'sent' : 'received')].join(' ')}>
           <div className="sc-message--avatar" style={{
             backgroundImage: `url(${chatIconUrl})`
           }}></div>
-          {this._renderMessageOfType(this.props.message.type)}
+          {_renderMessageOfType(props.message.type)}
         </div>
-      </div>);
-  }
+      </div>
+  )
 }
 
-export default Message;
+export default Message
