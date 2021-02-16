@@ -143,7 +143,7 @@ const UserInput = (props) => {
         onChange={handleInputChange}
         value={text}
         placeholder="Write a reply..."
-        className={`sc-user-input--text ${(inputActive ? 'active' : '')}`}
+        className="sc-user-input--text"
       />
       <div className="sc-user-input--buttons">
         <div className="sc-user-input--button"></div>

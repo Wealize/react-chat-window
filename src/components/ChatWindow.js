@@ -33,7 +33,7 @@ const ChatWindow = (props) => {
   const isLastMessageQuickReply = () => {
     let lastMessage = getLastMessage()
 
-    if (lastMessage === null) {
+    if (lastMessage === null || lastMessage === undefined) {
       return false
     } else if (lastMessage.quickReplies === undefined || lastMessage.quickReplies === null) {
       return false
