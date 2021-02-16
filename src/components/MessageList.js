@@ -13,7 +13,7 @@ const MessageList = (props) => {
         scrollTop: scrollList.scrollHeight
       })
     }
-  }, [props.messages])
+  }, [props])
 
   return (
       <div className="sc-message-list" ref={el => setScrollList(el)}>

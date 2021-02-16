@@ -8,13 +8,12 @@ import EmojiPicker from './emoji-picker/EmojiPicker';
 
 
 const UserInput = (props) => {
-  const [input, setInput] = useState(null)
   const [inputActive, setInputActive] = useState(false)
   const [inputHasText, setInputHasText] = useState(false)
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
   const [emojiFilter, setEmojiFilter] = useState('')
-  const [emojiPickerButton, setEmojiPickerButton] = useState(null)
   const [fileUploadButton, setFileUploadButton] = useState(null)
+  const [text, setText] = useState('')
 
   const {
     onSubmit,
@@ -24,50 +23,43 @@ const UserInput = (props) => {
   } = props
 
   useState(() => {
-    setEmojiPickerButton(
-      document.querySelector('#sc-emoji-picker-button')
-    )
+    setText('')
   }, [])
 
-  useState(() => {
-    console.log(input)
-  }, [input])
-
-  const handleKeyDown = (event) => {
-    if (event.keyCode === 13 && !event.shiftKey) {
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
       return _submitText(event)
     }
   }
 
-  const handleKeyUp = (event) => {
-    const hasText = event.target.innerHTML.length !== 0 &&
-      event.target.innerText !== '\n'
-    setInputHasText(hasText)
+  const handleInputChange = (event) => {
+    if (event.currentTarget.value.length !== 0) {
+      setInputHasText(true)
+    }
+    else {
+      setInputHasText(false)
+    }
+
+    setText(event.currentTarget.value)
   }
 
   const _showFilePicker = () => {
     fileUploadButton.click()
+    setEmojiPickerIsOpen(false)
   }
 
   const toggleEmojiPicker = (e) => {
     e.preventDefault()
-    if (!emojiPickerIsOpen) {
-      setEmojiPickerIsOpen(true)
-    }
+    setEmojiPickerIsOpen(!emojiPickerIsOpen)
   }
 
-  const closeEmojiPicker = (e) => {
-    if (emojiPickerButton.contains(e.target)) {
-      e.stopPropagation()
-      e.preventDefault()
-    }
-
+  const closeEmojiPicker = () => {
     setEmojiPickerIsOpen(false)
   }
 
   const _submitText = (event) => {
     event.preventDefault()
-    const text = input.textContent
+
     if (text && text.length > 0) {
       onSubmit({
         author: 'me',
@@ -75,14 +67,8 @@ const UserInput = (props) => {
         data: { text }
       })
 
-      console.log('texto normal')
-
-      setInput({
-        ...input,
-        innerHTML: ""
-      })
-
-      // this.userInput.innerHTML = ''
+      setText('')
+      setInputHasText(false)
     }
   }
 
@@ -95,12 +81,7 @@ const UserInput = (props) => {
   const _handleEmojiPicked = (emoji) => {
     setEmojiPickerIsOpen(false)
     if (inputHasText) {
-      setInput({
-        ...input,
-        innerHTML: input.innerHTML + emoji
-      })
-      console.log('con emoji')
-      // this.userInput.innerHTML += emoji
+      setText(text + emoji)
     } else {
       onSubmit({
         author: 'me',
@@ -117,7 +98,7 @@ const UserInput = (props) => {
   const _renderEmojiPopup = () => (
     <PopupWindow
       isOpen={emojiPickerIsOpen}
-      onClickedOutside={closeEmojiPicker}
+      onBlur={closeEmojiPicker}
       onInputChange={handleEmojiFilterChange}
     >
       <EmojiPicker
@@ -152,19 +133,18 @@ const UserInput = (props) => {
 
   return (
     <form className={`sc-user-input ${(inputActive ? 'active' : '')}`}>
-      <div
-        role="button"
-        tabIndex="0"
-        onFocus={() => setInputActive(true)}
+      <input
+        onFocus={() => {
+          setInputActive(true)
+          setEmojiPickerIsOpen(false)
+        }}
         onBlur={() => setInputActive(false)}
-        ref={(e) => setInput(e)}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        contentEditable="true"
+        onKeyPress={handleEnter}
+        onChange={handleInputChange}
+        value={text}
         placeholder="Write a reply..."
-        className="sc-user-input--text"
-      >
-      </div>
+        className={`sc-user-input--text ${(inputActive ? 'active' : '')}`}
+      />
       <div className="sc-user-input--buttons">
         <div className="sc-user-input--button"></div>
         <div className="sc-user-input--button">

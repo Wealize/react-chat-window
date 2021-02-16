@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const EmojiIcon = ({ tooltip, onClick, isActive }) => (
-  <div className="sc-user-input--picker-wrapper">
+  <div className="sc-user-input--picker-wrapper" onBlur={e => console.log(e)}>
     {tooltip}
     <button id="sc-emoji-picker-button" className="sc-user-input--emoji-icon-wrapper" onClick={onClick}>
       <svg
