@@ -143,10 +143,9 @@ const UserInput = (props) => {
         onChange={handleInputChange}
         value={text}
         placeholder="Write a reply..."
-        className="sc-user-input--text"
+        className={`sc-user-input--text`}
       />
       <div className="sc-user-input--buttons">
-        <div className="sc-user-input--button"></div>
         <div className="sc-user-input--button">
           {showEmoji && <EmojiIcon
             onClick={toggleEmojiPicker}
