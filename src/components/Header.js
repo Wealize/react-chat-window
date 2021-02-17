@@ -1,20 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import closeIcon from './../assets/close-icon.png';
 
 
-class Header extends Component {
+const Header = (props) => {
+    const {
+      imageUrl,
+      teamName,
+      onClose
+    } = props
 
-  render() {
     return (
       <div className="sc-header">
-        <img className="sc-header--img" src={this.props.imageUrl} alt="" />
-        <div className="sc-header--team-name"> {this.props.teamName} </div>
-        <div className="sc-header--close-button" onClick={this.props.onClose}>
+        <img className="sc-header--img" src={imageUrl} alt="" />
+        <div className="sc-header--team-name"> {teamName} </div>
+        <div className="sc-header--close-button" onClick={onClose}>
           <img src={closeIcon} alt="" />
         </div>
       </div>
-    );
-  }
+    )
 }
 
-export default Header;
+export default Header

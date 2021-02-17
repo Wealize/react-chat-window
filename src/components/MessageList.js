@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Message from './Messages';
 
-class MessageList extends Component {
 
-  componentDidUpdate(_prevProps, _prevState) {
-    this.scrollList.scrollTop = this.scrollList.scrollHeight;
-  }
+const MessageList = (props) => {
+  const [scrollList, setScrollList] = useState(null)
 
-  render () {
-    return (
-      <div className="sc-message-list" ref={el => this.scrollList = el}>
-        {this.props.messages.map((message, i) => {
-          return <Message message={message} key={i} />;
+  useEffect(() => {
+    if (scrollList !== null && scrollList.scrollTop !== scrollList.scrollHeight) {
+      scrollList.scrollTop = scrollList.scrollHeight
+      setScrollList({
+        ...scrollList,
+        scrollTop: scrollList.scrollHeight
+      })
+    }
+  }, [props])
+
+  return (
+      <div className="sc-message-list" ref={el => setScrollList(el)}>
+        {props.messages.map((message, i) => {
+          return <Message message={message} key={i} />
         })}
-      </div>);
-  }
+      </div>
+  )
 }
 
-export default MessageList;
+export default MessageList

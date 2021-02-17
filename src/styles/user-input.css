@@ -33,6 +33,12 @@
   overflow-y: auto;
 }
 
+.sc-user-input:focus {
+  box-shadow: none;
+  background-color: white;
+  box-shadow: 0px -5px 20px 0px rgba(150, 165, 190, 0.2);
+}
+
 .sc-user-input--text:empty:before {
   content: attr(placeholder);
   display: block; /* For Firefox */

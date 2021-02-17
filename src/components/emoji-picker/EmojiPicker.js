@@ -3,8 +3,8 @@ import EmojiConvertor from 'emoji-js';
 import emojiData from './emojiData';
 
 
-const emojiConvertor = new EmojiConvertor();
-emojiConvertor.init_env();
+const emojiConvertor = new EmojiConvertor()
+emojiConvertor.init_env()
 
 const EmojiPicker = ({ onEmojiPicked, filter }) => (
   <div className="sc-emoji-picker">
@@ -33,4 +33,4 @@ const EmojiPicker = ({ onEmojiPicked, filter }) => (
   </div>
 );
 
-export default EmojiPicker;
+export default EmojiPicker

@@ -21,16 +21,18 @@
     "@types/react-audio-player": "^0.11.0",
     "emoji-js": "3.2.2",
     "gh-pages": "^1.2.0",
-    "prop-types": "15.5.10",
-    "react-highlight.js": "1.0.5",
-    "react-linkify": "^0.2.1",
-    "socket.io-client": "2.0.3",
-    "styled-components": "^4.4.1",
+    "htmlparser2": "^6.0.0",
     "react-audio-player": "^0.13.0",
+    "react-highlight.js": "1.0.5",
+    "react-showdown": "^2.1.0",
+    "socket.io-client": "2.0.3",
     "video-react": "^0.14.1"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "prop-types": "15.5.10",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -38,9 +40,11 @@
     "eslint-plugin-react": "^7.12.4",
     "nwb": "^0.23.0",
     "react": "^16.8.6",
-    "react-dom": "16.8.6"
+    "react-dom": "^16.8.6",
+    "prop-types": "15.5.10",
+    "styled-components": "^4.4.1"
   },
-  "author": "kingofthestack",
+  "author": "Wealize",
   "homepage": "https://kingofthestack.github.io/react-chat-window/",
   "license": "MIT",
   "repository": {

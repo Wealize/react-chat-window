@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-class QuickRepliesList extends Component {
-  render() {
-    const classList = [
-      'sc-quick-replies-block',
-      (this.props.quickReplies ? 'visible' : 'hidden')
-    ];
+const QuickRepliesList = (props) => {
+    const {
+      message,
+      onQuickReplyClicked
+    } = props
 
     return (
-      <div className={classList.join(' ')}>
+      <div className={['sc-quick-replies-block', (message.quickReplies ? 'visible' : 'hidden')].join(' ')}>
         <div className='sc-quick-replies'>
-          {this.props.quickReplies.map((qr, i) => (
+          {message.quickReplies.map((qr, i) => (
             <div key={i} className='sc-quick-reply'>
               <button
                 key={i}
                 className="sc-quick-reply-button"
-                onClick={() => this.props.onQuickReplyClicked(qr)}
+                onClick={() => onQuickReplyClicked(qr)}
               >
                 {qr.data[qr.type]}
               </button>
@@ -24,18 +23,17 @@ class QuickRepliesList extends Component {
           ))}
         </div>
       </div>
-    );
-  }
+    )
 }
 
 QuickRepliesList.propTypes = {
-  quickReplies: PropTypes.arrayOf(PropTypes.object),
+  message: PropTypes.object,
   onQuickReplyClicked: PropTypes.func,
-};
+}
 
 QuickRepliesList.defaultProps = {
-  quickReplies: [],
+  message: [],
   onQuickReplyClicked: () => {},
-};
+}
 
-export default QuickRepliesList;
+export default QuickRepliesList

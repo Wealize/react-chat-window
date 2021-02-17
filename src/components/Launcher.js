@@ -101,7 +101,7 @@ class Launcher extends Component {
           )
         }
       </div>
-    );
+    )
   }
 }
 
@@ -111,8 +111,8 @@ const MessageCount = (props) => {
     <div className={'sc-new-messages-count'}>
       {props.count}
     </div>
-  );
-};
+  )
+}
 
 Launcher.propTypes = {
   onMessageWasReceived: PropTypes.func,
@@ -127,13 +127,13 @@ Launcher.propTypes = {
   showWelcomeMessage: PropTypes.func,
   hideUserInputWithQuickReplies: PropTypes.bool,
   showStartButton: PropTypes.func
-};
+}
 
 Launcher.defaultProps = {
   newMessagesCount: 0,
   showEmoji: true,
   showFileIcon: true,
   hideUserInputWithQuickReplies: false
-};
+}
 
-export default Launcher;
+export default Launcher
