@@ -8,7 +8,7 @@ const QuickRepliesList = (props) => {
     } = props
 
     return (
-      <div className={['sc-quick-replies-block', (message.quickReplies ? 'visible' : 'hidden')].join(' ')}>
+      <div className={['sc-quick-replies-block', ((message.quickReplies && message.quickReplies.length > 0) ? 'visible' : 'hidden')].join(' ')}>
         <div className='sc-quick-replies'>
           {message.quickReplies.map((qr, i) => (
             <div key={i} className='sc-quick-reply'>
