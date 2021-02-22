@@ -6,16 +6,21 @@ const Header = (props) => {
     const {
       imageUrl,
       teamName,
-      onClose
+      onClose,
+      showCloseButton
     } = props
 
     return (
       <div className="sc-header">
         <img className="sc-header--img" src={imageUrl} alt="" />
         <div className="sc-header--team-name"> {teamName} </div>
-        <div className="sc-header--close-button" onClick={onClose}>
-          <img src={closeIcon} alt="" />
-        </div>
+        {
+          showCloseButton && (
+            <div className="sc-header--close-button" onClick={onClose}>
+              <img src={closeIcon} alt="" />
+            </div>
+          )
+        }
       </div>
     )
 }
