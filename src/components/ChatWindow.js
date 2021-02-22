@@ -11,6 +11,7 @@ const ChatWindow = (props) => {
     messageList,
     agentProfile,
     isOpen,
+    isWebView,
     onClose,
     showEmoji,
     showFileIcon,
@@ -58,11 +59,12 @@ const ChatWindow = (props) => {
   }
 
   return (
-    <div className={['sc-chat-window', (isOpen ? 'opened' : 'closed')].join(' ')}>
+    <div className={`sc-chat-window ${(isOpen || isWebView) ? 'opened' : 'closed'}`}>
       <Header
         teamName={agentProfile.teamName}
         imageUrl={agentProfile.imageUrl}
         onClose={onClose}
+        showCloseButton={!isWebView}
       />
       <MessageList
         messages={messageList}
@@ -90,6 +92,7 @@ ChatWindow.propTypes = {
   messageList: PropTypes.array,
   agentProfile: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  isWebView: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func,
   onUserInputSubmit: PropTypes.func.isRequired,
@@ -99,7 +102,8 @@ ChatWindow.propTypes = {
 }
 
 ChatWindow.defaultProps = {
-  messageList: []
+  messageList: [],
+  isWebView: false
 }
 
 export default ChatWindow

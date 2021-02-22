@@ -93,6 +93,7 @@ class Launcher extends Component {
               onFilesSelected={this.props.onFilesSelected}
               agentProfile={this.props.agentProfile}
               isOpen={isOpen}
+              isWebView={this.props.isWebView}
               onClose={this.handleClick.bind(this)}
               showEmoji={this.props.showEmoji}
               showFileIcon={this.props.showFileIcon}
@@ -119,6 +120,7 @@ Launcher.propTypes = {
   onMessageWasSent: PropTypes.func,
   newMessagesCount: PropTypes.number,
   isOpen: PropTypes.bool,
+  isWebView: PropTypes.bool,
   handleClick: PropTypes.func,
   messageList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
@@ -133,7 +135,8 @@ Launcher.defaultProps = {
   newMessagesCount: 0,
   showEmoji: true,
   showFileIcon: true,
-  hideUserInputWithQuickReplies: false
+  hideUserInputWithQuickReplies: false,
+  isWebView: false
 }
 
 export default Launcher
