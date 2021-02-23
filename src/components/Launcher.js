@@ -25,7 +25,6 @@ const Launcher = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log(previousMessageList)
     if (props.mute || previousMessageList === undefined) {
       return
     }
@@ -33,9 +32,6 @@ const Launcher = (props) => {
     const nextMessage = props.messageList[props.messageList.length - 1]
     const isIncoming = (nextMessage || {}).author === 'them'
     const isNew = props.messageList.length > previousMessageList.length
-
-    console.log(isIncoming)
-    console.log(isNew)
 
     if (isIncoming && isNew) {
       playIncomingMessageSound()
@@ -48,8 +44,11 @@ const Launcher = (props) => {
     audio.play()
   }
 
-  const handleClick = () => {
+  const handleOnClose = () => {
     setIsOpen(!isOpen)
+    if (props.handleClick) {
+      props.handleClick()
+    }
   }
 
   const shouldShowWelcomeMessage = () => {
@@ -77,7 +76,7 @@ const Launcher = (props) => {
     <div id="sc-launcher">
       <div
         className={`sc-launcher ${isOpen ? 'opened' : ''}`}
-        onClick={handleClick}
+        onClick={handleOnClose}
       >
         {shouldShowMessageCount() &&
           <MessageCount
@@ -99,7 +98,7 @@ const Launcher = (props) => {
           <ConsentWindow
             agentProfile={props.agentProfile}
             isOpen={isOpen}
-            onClose={handleClick}
+            onClose={handleOnClose}
             onConsent={handleConsent}
           />
         ) : (
@@ -110,7 +109,7 @@ const Launcher = (props) => {
             agentProfile={props.agentProfile}
             isOpen={isOpen}
             isWebView={props.isWebView}
-            onClose={handleClick}
+            onClose={handleOnClose}
             showEmoji={props.showEmoji}
             showFileIcon={props.showFileIcon}
             hideUserInputWithQuickReplies={props.hideUserInputWithQuickReplies}
