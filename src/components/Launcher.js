@@ -1,119 +1,126 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ChatWindow from './ChatWindow';
-import ConsentWindow from './ConsentWindow';
-import launcherIcon from './../assets/logo-no-bg.svg';
-import incomingMessageSound from './../assets/sounds/notification.mp3';
-import launcherIconActive from './../assets/close-icon.png';
+import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
 
-class Launcher extends Component {
+import launcherIcon from './../assets/logo-no-bg.svg'
+import incomingMessageSound from './../assets/sounds/notification.mp3'
+import launcherIconActive from './../assets/close-icon.png'
 
-  constructor() {
-    super();
-    this.state = {
-      launcherIcon,
-      isOpen: false,
-      hideConsent: false
-    };
-  }
+import usePrevious from '../helpers/usePrevious'
+import ChatWindow from './ChatWindow'
+import ConsentWindow from './ConsentWindow'
+import MessageCount from './MessageCount'
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.mute) { return; }
-    const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
-    const isIncoming = (nextMessage || {}).author === 'them';
-    const isNew = nextProps.messageList.length > this.props.messageList.length;
+
+
+const Launcher = (props) => {
+  const [isOpen, setIsOpen] = useState(props.isOpen)
+  const [hideConsent, setHideConsent] = useState(false)
+  const previousMessageList = usePrevious(props.messageList)
+
+  useEffect(() => {
+    if (shouldShowWelcomeMessage()) {
+      showWelcomeMessage()
+      showStartButton()
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(previousMessageList)
+    if (props.mute || previousMessageList === undefined) {
+      return
+    }
+
+    const nextMessage = props.messageList[props.messageList.length - 1]
+    const isIncoming = (nextMessage || {}).author === 'them'
+    const isNew = props.messageList.length > previousMessageList.length
+
+    console.log(isIncoming)
+    console.log(isNew)
+
     if (isIncoming && isNew) {
-      this.playIncomingMessageSound();
+      playIncomingMessageSound()
     }
+
+  }, [props.messageList])
+
+  const playIncomingMessageSound = () => {
+    var audio = new Audio(incomingMessageSound)
+    audio.play()
   }
 
-  playIncomingMessageSound() {
-    var audio = new Audio(incomingMessageSound);
-    audio.play();
+  const handleClick = () => {
+    setIsOpen(!isOpen)
   }
 
-  handleClick() {
-    if (this.shouldShowWelcomeMessage()) this.props.showWelcomeMessage();
-
-    if (this.shouldShowWelcomeMessage()) this.props.showStartButton();
-
-    if (this.props.handleClick !== undefined) {
-      this.props.handleClick();
-    } else {
-      this.setState({
-        isOpen: !this.state.isOpen,
-      });
-    }
+  const shouldShowWelcomeMessage = () => {
+    return (!isOpen || props.isWebView) && props.messageList.length === 0
   }
 
-  shouldShowWelcomeMessage() {
-    return !this.state.isOpen && this.props.messageList.length == 0 ;
-  }
-
-  shouldShowConsent() {
+  const shouldShowConsent = () => {
     return (
-      this.props.agentProfile.requireConsentFromUser &&
-      this.props.messageList.length == 0 &&
-      !this.state.hideConsent
-    );
-  }
-
-  handleConsent(e) {
-    e.preventDefault();
-    this.setState({hideConsent: true});
-  }
-
-  render() {
-    const isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
-    const classList = [
-      'sc-launcher',
-      (isOpen ? 'opened' : ''),
-    ];
-
-    return (
-      <div id="sc-launcher">
-        <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
-          <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
-          <img className={'sc-open-icon'} src={launcherIconActive} />
-          <img className={'sc-closed-icon'} src={launcherIcon} />
-        </div>
-
-        { this.shouldShowConsent() ?
-          (
-            <ConsentWindow
-              agentProfile={this.props.agentProfile}
-              isOpen={isOpen}
-              onClose={this.handleClick.bind(this)}
-              onConsent={this.handleConsent.bind(this)}
-            />
-          ) : (
-            <ChatWindow
-              messageList={this.props.messageList}
-              onUserInputSubmit={this.props.onMessageWasSent}
-              onFilesSelected={this.props.onFilesSelected}
-              agentProfile={this.props.agentProfile}
-              isOpen={isOpen}
-              isWebView={this.props.isWebView}
-              onClose={this.handleClick.bind(this)}
-              showEmoji={this.props.showEmoji}
-              showFileIcon={this.props.showFileIcon}
-              hideUserInputWithQuickReplies={this.props.hideUserInputWithQuickReplies}
-            />
-          )
-        }
-      </div>
+      props.agentProfile.requireConsentFromUser &&
+      props.messageList.length == 0 &&
+      !hideConsent
     )
   }
-}
+  
+  const shouldShowMessageCount = () => {
+    return props.newMessagesCount > 0 && !isOpen
+  }
 
-const MessageCount = (props) => {
-  if (props.count === 0 || props.isOpen === true) { return null; }
+  const handleConsent = (e) => {
+    e.preventDefault();
+    setHideConsent(true)
+  }
+
   return (
-    <div className={'sc-new-messages-count'}>
-      {props.count}
+    <div id="sc-launcher">
+      <div
+        className={`sc-launcher ${isOpen ? 'opened' : ''}`}
+        onClick={handleClick}
+      >
+        {shouldShowMessageCount() &&
+          <MessageCount
+            count={props.newMessagesCount}
+          />
+        }
+        <img
+          className='sc-open-icon'
+          src={launcherIconActive}
+        />
+        <img
+          className='sc-closed-icon'
+          src={launcherIcon}
+        />
+      </div>
+
+      {shouldShowConsent() ?
+        (
+          <ConsentWindow
+            agentProfile={props.agentProfile}
+            isOpen={isOpen}
+            onClose={handleClick}
+            onConsent={handleConsent}
+          />
+        ) : (
+          <ChatWindow
+            messageList={props.messageList}
+            onUserInputSubmit={props.onMessageWasSent}
+            onFilesSelected={props.onFilesSelected}
+            agentProfile={props.agentProfile}
+            isOpen={isOpen}
+            isWebView={props.isWebView}
+            onClose={handleClick}
+            showEmoji={props.showEmoji}
+            showFileIcon={props.showFileIcon}
+            hideUserInputWithQuickReplies={props.hideUserInputWithQuickReplies}
+          />
+        )
+      }
     </div>
   )
 }
+
 
 Launcher.propTypes = {
   onMessageWasReceived: PropTypes.func,
@@ -136,6 +143,7 @@ Launcher.defaultProps = {
   showEmoji: true,
   showFileIcon: true,
   hideUserInputWithQuickReplies: false,
+  isOpen: false,
   isWebView: false
 }
 
