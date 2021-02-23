@@ -19,8 +19,8 @@ const Launcher = (props) => {
 
   useEffect(() => {
     if (shouldShowWelcomeMessage()) {
-      showWelcomeMessage()
-      showStartButton()
+      props.showWelcomeMessage()
+      props.showStartButton()
     }
   }, [])
 

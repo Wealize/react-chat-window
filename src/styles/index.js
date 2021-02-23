@@ -6,3 +6,4 @@ import './message.css';
 import './user-input.css';
 import './popup-window.css';
 import './quick-replies.css';
+import 'react-h5-audio-player/lib/styles.css';
