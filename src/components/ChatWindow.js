@@ -68,6 +68,7 @@ const ChatWindow = (props) => {
       />
       <MessageList
         messages={messageList}
+        icon={agentProfile.imageUrl}
       />
 
       {isLastMessageQuickReply() && (
