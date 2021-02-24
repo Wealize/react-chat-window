@@ -1,6 +1,6 @@
 {
   "name": "@wealize/react-chat-window",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "react-chat-window React component",
   "main": "lib/index.js",
   "module": "es/index.js",
