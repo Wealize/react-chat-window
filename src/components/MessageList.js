@@ -18,7 +18,11 @@ const MessageList = (props) => {
   return (
       <div className="sc-message-list" ref={el => setScrollList(el)}>
         {props.messages.map((message, i) => {
-          return <Message message={message} key={i} />
+          return <Message
+            key={i}
+            message={message}
+            icon={props.icon}
+          />
         })}
       </div>
   )

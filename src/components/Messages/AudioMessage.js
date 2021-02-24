@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactAudioPlayer from 'react-audio-player';
+import React from 'react'
+import AudioPlayer from 'react-h5-audio-player'
 
 
 const AudioMessage = (props) => {
   return (
-    <ReactAudioPlayer
+    <AudioPlayer
       src={props.data.url}
-      controls
+      showJumpControls={false}
+      showFilledVolume={true}
     />
-  );
-};
+  )
+}
 
-export default AudioMessage;
+export default AudioMessage

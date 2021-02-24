@@ -6,7 +6,6 @@ import AudioMessage from './AudioMessage';
 import VideoMessage from './VideoMessage';
 import ImageMessage from './ImageMessage';
 import chatIconUrl from './../../assets/chat-icon.svg';
-import MarkdownView from 'react-showdown'
 
 
 const Message = (props) => {
@@ -31,11 +30,14 @@ const Message = (props) => {
 
   return (
       <div className="sc-message">
-        <div className={['sc-message--content', (props.message.author === 'me' ? 'sent' : 'received')].join(' ')}>
-          <div className="sc-message--avatar" style={{
-            backgroundImage: `url(${chatIconUrl})`
-          }}></div>
-          {_renderMessageOfType(props.message.type)}
+        <div className={`sc-message--content ${props.message.author === 'me' ? 'sent' : 'received'}`}>
+          <div 
+            className="sc-message--avatar"
+            style={{
+              backgroundImage: `url(${props.icon || chatIconUrl})`
+            }}
+          ></div>
+            {_renderMessageOfType(props.message.type)}
         </div>
       </div>
   )
