@@ -132,7 +132,7 @@ const UserInput = (props) => {
   }
 
   return (
-    <form className={`sc-user-input ${(inputActive ? 'active' : '')}`}>
+    <div className={`sc-user-input${(inputActive ? ' active' : '')}`}>
       <input
         onFocus={() => {
           setInputActive(true)
@@ -143,7 +143,7 @@ const UserInput = (props) => {
         onChange={handleInputChange}
         value={text}
         placeholder="Write a reply..."
-        className={`sc-user-input--text ${(inputActive ? 'active' : '')}`}
+        className={`sc-user-input--text`}
       />
       <div className="sc-user-input--buttons">
         <div className="sc-user-input--button">
@@ -155,7 +155,7 @@ const UserInput = (props) => {
         </div>
         {_renderSendOrFileIcon()}
       </div>
-    </form>
+    </div>
   )
 }
 
