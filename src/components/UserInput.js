@@ -142,7 +142,7 @@ const UserInput = (props) => {
         onKeyPress={handleEnter}
         onChange={handleInputChange}
         value={text}
-        placeholder="Write a reply..."
+        placeholder="Escribe tu respuesta..."
         className={`sc-user-input--text`}
       />
       <div className="sc-user-input--buttons">
