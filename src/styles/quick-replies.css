@@ -12,8 +12,9 @@
 }
 
 .sc-quick-replies {
-  display: block;
+  display: inline-flex;
   padding: 0px 12px 8px;
+  overflow-x: scroll;
 }
 
 .sc-quick-reply {
