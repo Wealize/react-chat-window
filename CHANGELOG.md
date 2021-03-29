@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.4] - 2021-03-29
+
+- [Fixing menu of quick replies and placeholder](https://wealize.atlassian.net/browse/TEC20047-16)
+
 ## [1.2.0] - 2020-02-25
 
 ### Added
 
 - Make File upload icon optional (YOT-204)
-
 
 ## [1.1.0] - 2020-02-13
 
