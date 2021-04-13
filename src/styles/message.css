@@ -31,8 +31,8 @@
 }
 
 .sc-message--text {
-  padding: 17px 20px;
-  border-radius: 6px;
+  padding: 10px 6px 9px 12px;
+  border-radius: 8px;
   font-weight: 300;
   font-size: 14px;
   line-height: 1.4;
@@ -52,7 +52,6 @@
 .sc-message--content.received .sc-message--text {
   color: #263238;
   background-color: #f4f7f9;
-  margin-right: 40px;
 }
 
 .sc-message--emoji {
