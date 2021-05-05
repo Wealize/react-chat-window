@@ -35,7 +35,6 @@
   margin: 8px 0 0;
   max-width: 80%;
   width: fit-content;
-  font-family: DMSans;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -54,6 +53,7 @@
 .sc-message--content.sent .sc-message--text p {
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
+  word-break: break-word;
 }
 
 .sc-message--content.received .sc-message--text {
