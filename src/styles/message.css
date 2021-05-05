@@ -31,22 +31,29 @@
 }
 
 .sc-message--text {
-  padding: 10px 6px 9px 12px;
-  border-radius: 8px;
-  font-weight: 300;
+  padding: 8px;
+  margin: 8px 0 0;
+  max-width: 80%;
+  width: fit-content;
+  font-family: DMSans;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
   font-size: 14px;
-  line-height: 1.4;
-  white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased;
-  word-wrap: break-word;
-  width: calc(100% - 90px);
+  line-height: normal;
+  letter-spacing: normal;
 }
 
 .sc-message--content.sent .sc-message--text {
-  color: white;
   background-color: #4e8cff;
-  max-width: calc(100% - 120px);
-  word-wrap: break-word;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.sc-message--content.sent .sc-message--text p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
 }
 
 .sc-message--content.received .sc-message--text {
