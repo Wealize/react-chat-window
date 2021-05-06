@@ -21,7 +21,6 @@ const MessageList = (props) => {
           return <Message
             key={i}
             message={message}
-            icon={props.icon}
           />
         })}
       </div>
