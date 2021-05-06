@@ -12,12 +12,14 @@ const Header = (props) => {
 
     return (
       <div className="sc-header">
-        <img className="sc-header--img" src={imageUrl} alt="" />
-        <div className="sc-header--team-name"> {teamName} </div>
+        <div className="sc-header--basic-info">
+          <p className="sc-header--bot-name">FAQ Bot</p>
+          <p className="sc-header--bot-explanation">Explicacion</p>
+        </div>
         {
           showCloseButton && (
             <div className="sc-header--close-button" onClick={onClose}>
-              <img src={closeIcon} alt="" />
+              <img src={closeIcon} alt=""/>
             </div>
           )
         }
