@@ -31,13 +31,13 @@ const Message = (props) => {
   return (
       <div className="sc-message">
         <div className={`sc-message--content ${props.message.author === 'me' ? 'sent' : 'received'}`}>
-          <div 
+          {props.message.author === 'them' && <div 
             className="sc-message--avatar"
             style={{
               backgroundImage: `url(${props.icon || chatIconUrl})`
             }}
-          ></div>
-            {_renderMessageOfType(props.message.type)}
+          />}
+          {_renderMessageOfType(props.message.type)}
         </div>
       </div>
   )

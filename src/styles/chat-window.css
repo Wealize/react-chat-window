@@ -1,7 +1,7 @@
 .sc-chat-window {
-  width: 370px;
+  width: 338px;
   height: calc(100% - 120px);
-  max-height: 590px;
+  max-height: 587px;
   position: fixed;
   right: 25px;
   bottom: 100px;
@@ -23,18 +23,9 @@
 }
 
 .sc-message-list {
-  height: 80%;
   overflow-y: auto;
   background-color: white;
-  background-size: 100%;
-  padding-top: 30px;
-}
-
-.sc-message--me {
-  text-align: right;
-}
-.sc-message--them {
-  text-align: left;
+  padding-top: 16px;
 }
 
 @media (max-width: 450px) {

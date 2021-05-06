@@ -1,7 +1,8 @@
 .sc-message {
-  width: 300px;
-  margin: auto;
-  padding-bottom: 10px;
+  width: 310px;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-bottom: 8px;
   display: flex;
 }
 
@@ -14,26 +15,19 @@
   justify-content: flex-end;
 }
 
-.sc-message--content.sent .sc-message--avatar {
-  display: none;
-}
-
-/* .sc-message--avatar {
-  background-image: url(https://d13yacurqjgara.cloudfront.net/assets/avatar-default-aa2eab7684294781f93bc99ad394a0eb3249c5768c21390163c9f55ea8ef83a4.gif);
+.sc-message--avatar {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  min-width: 30px;
-  min-height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  align-self: center;
-  margin-right: 15px;
-} */
+  align-self: flex-start;
+  margin-right: 8px;
+}
 
 .sc-message--text {
   padding: 8px;
-  margin: 8px 0 0;
-  max-width: 80%;
   width: fit-content;
   font-weight: normal;
   font-stretch: normal;
@@ -50,6 +44,7 @@
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  max-width: 80%;
 }
 
 .sc-message--content.received .sc-message--text {
@@ -58,6 +53,7 @@
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  max-width: 70%;
 }
 
 .sc-message--emoji {
