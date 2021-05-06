@@ -29,7 +29,6 @@
   font-weight: bold;
   color: rgba(255, 255, 255, 0.85);
   font-family: 'DM Sans';
-  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
@@ -39,10 +38,8 @@
 
 .sc-header--bot-explanation {
   font-size: 14px;
-  font-weight: bold;
   color: rgba(255, 255, 255, 0.85);
   font-family: 'DM Sans';
-  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
