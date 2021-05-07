@@ -56,26 +56,56 @@
   max-width: 70%;
 }
 
+.sc-message--content.sent .sc-message--audio {
+  max-width: 75%;
+}
+
+.sc-message--content.received .sc-message--audio {
+  max-width: 75%;
+}
+
+.sc-message--content.sent .sc-message--img {
+  max-width: 75%;
+}
+
+.sc-message--content.received .sc-message--img {
+  max-width: 75%;
+}
+
 .sc-message--emoji {
   font-size: 40px;
+}
+
+.sc-message--content.sent .sc-message--file {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  max-width: 80%;
+}
+
+.sc-message--content.received .sc-message--file {
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  max-width: 70%;
 }
 
 .sc-message--file {
   background: white;
   border: solid 1px #CCCDD1;
-  padding: 15px 20px;
-  border-radius: 5px;
   display: flex;
   font-weight: 300;
   font-size: 14px;
   line-height: 1.4;
   cursor: pointer;
   text-decoration: none;
+  padding: 8px;
 }
 
 .sc-message--file p {
   margin: 0px 0px 0px 10px;
   color: rgba(86, 88, 103, 0.6);
+  word-break: break-all;
 }
 
 .sc-message--file .sc-user-input--file-icon:hover path {
