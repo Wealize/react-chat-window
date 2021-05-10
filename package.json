@@ -24,6 +24,7 @@
     "react-highlight.js": "1.0.7",
     "react-is": "^17.0.2",
     "react-showdown": "^2.3.0",
+    "react-textarea-autosize": "^8.3.2",
     "video-react": "^0.14.1"
   },
   "peerDependencies": {

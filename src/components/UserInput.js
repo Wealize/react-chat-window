@@ -6,6 +6,8 @@ import EmojiIcon from './icons/EmojiIcon';
 import PopupWindow from './popups/PopupWindow';
 import EmojiPicker from './emoji-picker/EmojiPicker';
 
+import TextareaAutosize from 'react-textarea-autosize';
+
 
 const UserInput = (props) => {
   const [inputActive, setInputActive] = useState(false)
@@ -141,9 +143,9 @@ const UserInput = (props) => {
             tooltip={_renderEmojiPopup()}
           />}
         </div>
-        {_renderSendOrFileIcon()}
+        {/* {_renderSendOrFileIcon()} */}
       </div>
-      <input
+      <TextareaAutosize
         onFocus={() => {
           setInputActive(true)
           setEmojiPickerIsOpen(false)
@@ -158,13 +160,6 @@ const UserInput = (props) => {
       <SendIcon
         onClick={_submitText}
       />
-      {/* <button className="sc-user-input--send-button">
-        <p>
-          Send
-        </p>
-        <div className="sc-user-input--button">
-        </div>
-      </button> */}
     </form>
   )
 }
