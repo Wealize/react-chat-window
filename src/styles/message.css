@@ -64,6 +64,14 @@
   max-width: 75%;
 }
 
+.sc-message--content.sent .sc-message--video {
+  max-width: 75%;
+}
+
+.sc-message--content.received .sc-message--video {
+  max-width: 75%;
+}
+
 .sc-message--content.sent .sc-message--img {
   max-width: 75%;
 }
