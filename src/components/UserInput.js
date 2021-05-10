@@ -134,7 +134,7 @@ const UserInput = (props) => {
   }
 
   return (
-    <form className={`sc-user-input${(inputActive ? ' active' : '')}`}>
+    <form className={`sc-user-input ${((inputActive || inputHasText) ? 'active' : '')}`}>
       <div className="sc-user-input--buttons">
         <div className="sc-user-input--button">
           {showEmoji && <EmojiIcon
@@ -145,7 +145,7 @@ const UserInput = (props) => {
         </div>
         {/* {_renderSendOrFileIcon()} */}
       </div>
-      <TextareaAutosize
+      <input
         onFocus={() => {
           setInputActive(true)
           setEmojiPickerIsOpen(false)
@@ -155,10 +155,11 @@ const UserInput = (props) => {
         onChange={handleInputChange}
         value={text}
         placeholder="Escribe tu respuesta..."
-        className={`sc-user-input--text`}
+        className={`sc-user-input--text ${((inputActive || inputHasText) ? 'active' : '')}`}
       />
       <SendIcon
         onClick={_submitText}
+        inputActive={inputActive || inputHasText}
       />
     </form>
   )
