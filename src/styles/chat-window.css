@@ -1,3 +1,7 @@
+* {
+  font-family: 'Dm Sans' !important;
+}
+
 .sc-chat-window {
   width: 338px;
   height: calc(100% - 120px);
@@ -13,7 +17,6 @@
   justify-content: space-between;
   transition: 0.3s ease-in-out;
   border-radius: 16px;
-  font-family: 'DM Sans';
 }
 
 .sc-chat-window.closed {

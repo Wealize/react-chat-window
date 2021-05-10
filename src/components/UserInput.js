@@ -132,7 +132,7 @@ const UserInput = (props) => {
   }
 
   return (
-    <div className={`sc-user-input${(inputActive ? ' active' : '')}`}>
+    <form className={`sc-user-input${(inputActive ? ' active' : '')}`}>
       <div className="sc-user-input--buttons">
         <div className="sc-user-input--button">
           {showEmoji && <EmojiIcon
@@ -155,7 +155,17 @@ const UserInput = (props) => {
         placeholder="Escribe tu respuesta..."
         className={`sc-user-input--text`}
       />
-    </div>
+      <SendIcon
+        onClick={_submitText}
+      />
+      {/* <button className="sc-user-input--send-button">
+        <p>
+          Send
+        </p>
+        <div className="sc-user-input--button">
+        </div>
+      </button> */}
+    </form>
   )
 }
 

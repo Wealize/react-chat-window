@@ -4,54 +4,66 @@
   position: relative;
   bottom: 0;
   display: flex;
-  background-color: #f4f7f9;
+  background-color: #ffffff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   transition: background-color .2s ease,box-shadow .2s ease;
 }
 
 .sc-user-input--text {
+  display: flex;
   background-color: inherit;
-  width: 300px;
   resize: none;
   border: none;
   outline: none;
-  border-bottom-left-radius: 10px;
+
   box-sizing: border-box;
-  padding: 18px;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.33;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  color: #565867;
-  -webkit-font-smoothing: antialiased;
   max-height: 200px;
-  overflow: scroll;
+  flex-grow:2;
   bottom: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.83;
+  letter-spacing: normal;
+  color: rgba(0, 0, 0, 0.45);
+
   transition: background-color .2s ease,box-shadow .2s ease;
 }
 
-.sc-user-input--text:empty:before {
-  content: attr(placeholder);
-  display: block; /* For Firefox */
-  color: rgba(86, 88, 103, 0.3);
-  outline: none;
+.sc-user-input--send-button {
+  display: flex;
+  flex-direction:row;
+  width: 79px;
+  height: 31px;
+  margin-right: 13px;
+  border-radius: 16px;
+  background-color: #6666ff;
+  border: none;
+  align-self: center;
+  cursor: pointer;
+  padding: 5px 11px 4px 13px;
+}
+
+.sc-user-input--send-button p {
+  margin: 0px;
+  padding-right: 6px;
+  font-family: 'Lato' !important;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #ffffff;
 }
 
 .sc-user-input--buttons {
-  width: 100px;
-  position: absolute;
-  right: 10px;
-  height: 100%;
+  position: relative;
+  float: left;
   display: flex;
-  justify-content: flex-end;
-}
-
-.sc-user-input--button:first-of-type {
-  width: 40px;
 }
 
 .sc-user-input--button {
@@ -81,8 +93,7 @@
   box-shadow: 0px -5px 20px 0px rgba(150, 165, 190, 0.2);
 }
 
-.sc-user-input--file-icon,
-.sc-user-input--send-icon {
+.sc-user-input--file-icon {
   height: 20px;
   width: 20px;
   cursor: pointer;
@@ -90,13 +101,21 @@
   outline: none;
 }
 
-.sc-user-input--file-icon path,
-.sc-user-input--send-icon path {
+.sc-user-input--file-icon path {
   fill: rgba(86, 88, 103, 0.3);
 }
 
-.sc-user-input--file-icon:hover path,
-.sc-user-input--send-icon:hover path {
+.sc-user-input--send-icon {
+  height: 12px;
+  width: 12px;
+  align-self: center;
+}
+
+.sc-user-input--send-icon path {
+  fill: white;
+}
+ 
+.sc-user-input--file-icon:hover path {
   fill: rgba(86, 88, 103, 1);
 }
 

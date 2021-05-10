@@ -13,8 +13,9 @@ const SendIcon = (props) => {
   return (
     <button
       onClick={handleClick}
-      className="sc-user-input--send-icon-wrapper"
+      className="sc-user-input--send-button"
     >
+      <p>Send</p>
       <svg
         version='1.1'
         className='sc-user-input--send-icon'
