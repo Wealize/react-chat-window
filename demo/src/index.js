@@ -47,6 +47,7 @@ class Demo extends Component {
         messageList: [...this.state.messageList, {
           author: 'them',
           type: 'text',
+          is_chatbot: true,
           data: { text }
         }]
       });

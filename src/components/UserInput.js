@@ -3,17 +3,14 @@ import React, { useState } from 'react';
 import SendIcon from './icons/SendIcon';
 import FileIcon from './icons/FileIcon';
 import EmojiIcon from './icons/EmojiIcon';
-import PopupWindow from './popups/PopupWindow';
-import EmojiPicker from './emoji-picker/EmojiPicker';
 
-import TextareaAutosize from 'react-textarea-autosize';
+import Picker from 'emoji-picker-react';
 
 
 const UserInput = (props) => {
   const [inputActive, setInputActive] = useState(false)
   const [inputHasText, setInputHasText] = useState(false)
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
-  const [emojiFilter, setEmojiFilter] = useState('')
   const [fileUploadButton, setFileUploadButton] = useState(null)
   const [text, setText] = useState('')
 
@@ -55,10 +52,6 @@ const UserInput = (props) => {
     setEmojiPickerIsOpen(!emojiPickerIsOpen)
   }
 
-  const closeEmojiPicker = () => {
-    setEmojiPickerIsOpen(false)
-  }
-
   const _submitText = (event) => {
     event.preventDefault()
 
@@ -71,6 +64,7 @@ const UserInput = (props) => {
 
       setText('')
       setInputHasText(false)
+      setInputActive(false)
     }
   }
 
@@ -80,34 +74,24 @@ const UserInput = (props) => {
     }
   }
 
-  const _handleEmojiPicked = (emoji) => {
+  const _handleEmojiPicked = (event, emoji) => {
     setEmojiPickerIsOpen(false)
     if (inputHasText) {
-      setText(text + emoji)
+      setText(text + emoji.emoji)
     } else {
       onSubmit({
         author: 'me',
         type: 'emoji',
-        data: { emoji }
+        data: { emoji: emoji.emoji }
       })
     }
   }
 
-  const handleEmojiFilterChange = (event) => {
-    setEmojiFilter(event.target.value)
-  }
-
   const _renderEmojiPopup = () => (
-    <PopupWindow
-      isOpen={emojiPickerIsOpen}
-      onBlur={closeEmojiPicker}
-      onInputChange={handleEmojiFilterChange}
-    >
-      <EmojiPicker
-        onEmojiPicked={_handleEmojiPicked}
-        filter={emojiFilter}
-      />
-    </PopupWindow>
+    <Picker
+      onEmojiClick={_handleEmojiPicked}
+      native
+    />
   )
 
   const _renderSendOrFileIcon = () => {

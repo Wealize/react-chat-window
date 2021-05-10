@@ -19,12 +19,11 @@
   "dependencies": {
     "@babel/core": "^7.14.0",
     "@types/react-audio-player": "^0.11.0",
-    "emoji-js": "3.5.0",
+    "emoji-picker-react": "^3.4.4",
     "react-h5-audio-player": "^3.7.0",
     "react-highlight.js": "1.0.7",
     "react-is": "^17.0.2",
     "react-showdown": "^2.3.0",
-    "react-textarea-autosize": "^8.3.2",
     "video-react": "^0.14.1"
   },
   "peerDependencies": {

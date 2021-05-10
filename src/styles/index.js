@@ -1,10 +1,8 @@
-import './emojiPicker.css';
 import './chat-window.css';
 import './launcher.css';
 import './header.css';
 import './message.css';
 import './user-input.css';
-import './popup-window.css';
 import './quick-replies.css';
 import 'react-h5-audio-player/lib/styles.css';
 import 'video-react/dist/video-react.css';
