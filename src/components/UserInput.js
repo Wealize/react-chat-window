@@ -133,6 +133,16 @@ const UserInput = (props) => {
 
   return (
     <div className={`sc-user-input${(inputActive ? ' active' : '')}`}>
+      <div className="sc-user-input--buttons">
+        <div className="sc-user-input--button">
+          {showEmoji && <EmojiIcon
+            onClick={toggleEmojiPicker}
+            isActive={emojiPickerIsOpen}
+            tooltip={_renderEmojiPopup()}
+          />}
+        </div>
+        {_renderSendOrFileIcon()}
+      </div>
       <input
         onFocus={() => {
           setInputActive(true)
@@ -145,16 +155,6 @@ const UserInput = (props) => {
         placeholder="Escribe tu respuesta..."
         className={`sc-user-input--text`}
       />
-      <div className="sc-user-input--buttons">
-        <div className="sc-user-input--button">
-          {showEmoji && <EmojiIcon
-            onClick={toggleEmojiPicker}
-            isActive={emojiPickerIsOpen}
-            tooltip={_renderEmojiPopup()}
-          />}
-        </div>
-        {_renderSendOrFileIcon()}
-      </div>
     </div>
   )
 }

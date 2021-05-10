@@ -13,7 +13,6 @@
 
 .sc-quick-replies {
   display: inline-flex;
-  padding: 0px 12px 8px;
   overflow-x: scroll;
 }
 
@@ -25,27 +24,46 @@
 
 .sc-quick-reply-button {
   display: block;
-  padding: 6px 12px;
+  padding: 8px;
   margin-top: 8px;
-  border-radius: 6px;
-  border: 1px solid #CCCDD1;
-  font-size: 14px;
-  line-height: 1.4;
-  -webkit-font-smoothing: subpixel-antialiased;
-  color: #CCCDD1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 1px solid #6666ff;
+  cursor: pointer; 
+  background-color: #ffffff;
   transition: border-color .2s, background-color .2s, color .2s;
+}
+
+.sc-quick-reply-button p {
+  margin: 0px;
+  font-family: 'DM Sans';
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .sc-quick-reply-button:not(:last-child) {
   margin-right: 12px;
 }
 
-.sc-quick-reply-button:hover,
-.sc-quick-reply-button:focus {
-  border-color: #4e8cff;
+.sc-quick-reply-button:hover p {
   color: white;
-  background-color: #4e8cff;
+}
+
+.sc-quick-reply-button:focus p {
+  color: white;
+}
+
+.sc-quick-reply-button:hover {
+  border: solid 1px #6666ff;
+  background-color: #6666ff;
+}
+
+.sc-quick-reply-button:focus {
+  border: solid 1px #6666ff;
+  background-color: #6666ff;
 }

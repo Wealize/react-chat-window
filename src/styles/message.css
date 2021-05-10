@@ -27,6 +27,7 @@
 }
 
 .sc-message--text {
+  font-family: 'DM Sans';
   padding: 8px;
   width: fit-content;
   font-weight: normal;
