@@ -4,20 +4,22 @@ import closeIcon from './../assets/close-icon.png';
 
 const Header = (props) => {
     const {
-      imageUrl,
       teamName,
+      teamExplanation,
       onClose,
       showCloseButton
     } = props
 
     return (
       <div className="sc-header">
-        <img className="sc-header--img" src={imageUrl} alt="" />
-        <div className="sc-header--team-name"> {teamName} </div>
+        <div className="sc-header--basic-info">
+          <p className="sc-header--bot-name">{teamName}</p>
+          {teamExplanation && <p className="sc-header--bot-explanation">{teamExplanation}</p>}
+        </div>
         {
           showCloseButton && (
             <div className="sc-header--close-button" onClick={onClose}>
-              <img src={closeIcon} alt="" />
+              <img src={closeIcon} alt=""/>
             </div>
           )
         }

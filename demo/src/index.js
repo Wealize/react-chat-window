@@ -1,17 +1,14 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
-import {Launcher} from '../../src';
-import messageHistory from './messageHistory';
-import TestArea from './TestArea';
-import Header from './Header';
-import Footer from './Footer';
-import monsterImgUrl from './../assets/monster.png';
-import './../assets/styles';
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+
+import { Launcher } from '../../src'
+import messageHistory from './messageHistory'
+import TestArea from './TestArea'
+import './../assets/styles'
 
 
 
 class Demo extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -29,6 +26,8 @@ class Demo extends Component {
 
   _onFilesSelected(fileList) {
     const objectURL = window.URL.createObjectURL(fileList[0]);
+    console.log(fileList[0].type)
+
     this.setState({
       messageList: [...this.state.messageList, {
         type: 'file', author: 'me',
@@ -48,6 +47,7 @@ class Demo extends Component {
         messageList: [...this.state.messageList, {
           author: 'them',
           type: 'text',
+          is_chatbot: true,
           data: { text }
         }]
       });
@@ -63,15 +63,13 @@ class Demo extends Component {
 
   render() {
     return <div>
-      <Header />
       <TestArea
         onMessage={this._sendMessage.bind(this)}
       />
       <Launcher
         agentProfile={{
-          teamName: 'react-chat-window',
-          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-          requireConsentFromUser: true
+          teamName: 'My bot',
+          teamExplanation: 'A bot'
         }}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
         onFilesSelected={this._onFilesSelected.bind(this)}
@@ -82,10 +80,8 @@ class Demo extends Component {
         showEmoji
         showFileIcon
       />
-      <img className="demo-monster-img" src={monsterImgUrl} />
-      <Footer />
     </div>;
   }
 }
 
-render(<Demo/>, document.querySelector('#demo'));
+render(<Demo />, document.querySelector('#demo'));

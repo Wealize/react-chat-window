@@ -3,15 +3,14 @@ import React, { useState } from 'react';
 import SendIcon from './icons/SendIcon';
 import FileIcon from './icons/FileIcon';
 import EmojiIcon from './icons/EmojiIcon';
-import PopupWindow from './popups/PopupWindow';
-import EmojiPicker from './emoji-picker/EmojiPicker';
+
+import Picker from 'emoji-picker-react';
 
 
 const UserInput = (props) => {
   const [inputActive, setInputActive] = useState(false)
   const [inputHasText, setInputHasText] = useState(false)
   const [emojiPickerIsOpen, setEmojiPickerIsOpen] = useState(false)
-  const [emojiFilter, setEmojiFilter] = useState('')
   const [fileUploadButton, setFileUploadButton] = useState(null)
   const [text, setText] = useState('')
 
@@ -53,10 +52,6 @@ const UserInput = (props) => {
     setEmojiPickerIsOpen(!emojiPickerIsOpen)
   }
 
-  const closeEmojiPicker = () => {
-    setEmojiPickerIsOpen(false)
-  }
-
   const _submitText = (event) => {
     event.preventDefault()
 
@@ -69,6 +64,7 @@ const UserInput = (props) => {
 
       setText('')
       setInputHasText(false)
+      setInputActive(false)
     }
   }
 
@@ -78,84 +74,85 @@ const UserInput = (props) => {
     }
   }
 
-  const _handleEmojiPicked = (emoji) => {
+  const _handleEmojiPicked = (event, emoji) => {
     setEmojiPickerIsOpen(false)
     if (inputHasText) {
-      setText(text + emoji)
+      setText(text + emoji.emoji)
     } else {
       onSubmit({
         author: 'me',
         type: 'emoji',
-        data: { emoji }
+        data: { emoji: emoji.emoji }
       })
     }
   }
 
-  const handleEmojiFilterChange = (event) => {
-    setEmojiFilter(event.target.value)
-  }
-
-  const _renderEmojiPopup = () => (
-    <PopupWindow
-      isOpen={emojiPickerIsOpen}
-      onBlur={closeEmojiPicker}
-      onInputChange={handleEmojiFilterChange}
-    >
-      <EmojiPicker
-        onEmojiPicked={_handleEmojiPicked}
-        filter={emojiFilter}
-      />
-    </PopupWindow>
-  )
-
-  const _renderSendOrFileIcon = () => {
-    if (inputHasText || !showFileIcon) {
-      return (
-        <div className="sc-user-input--button">
-          <SendIcon onClick={_submitText} />
-        </div>
-      )
-    }
-
-    return (
-      <div className="sc-user-input--button">
-        <FileIcon onClick={_showFilePicker} />
-        <input
-          type="file"
-          name="files[]"
-          multiple
-          ref={(e) => setFileUploadButton(e)}
-          onChange={_onFilesSelected}
-        />
-      </div>
-    )
-  }
-
   return (
-    <div className={`sc-user-input${(inputActive ? ' active' : '')}`}>
+    <form className={`sc-user-input ${((inputActive || inputHasText) ? 'active' : '')}`}>
+      <div className="sc-user-input--buttons">
+        {showEmoji && (
+          <div
+            className="sc-user-input--button"
+          >
+            <EmojiIcon
+              onClick={toggleEmojiPicker}
+              isActive={inputActive || inputHasText}
+            />
+          </div>
+        )} 
+        {showFileIcon && (
+          <div className="sc-user-input--button">
+            <FileIcon onClick={_showFilePicker} isActive={inputActive || inputHasText}/>
+            <input
+              type="file"
+              name="files[]"
+              multiple
+              ref={(e) => setFileUploadButton(e)}
+              onChange={_onFilesSelected}
+            />
+          </div>
+        )}
+      </div>
+      {emojiPickerIsOpen && 
+        <Picker
+          onBlur={(e) => {
+            if (e.relatedTarget === null) {
+              setEmojiPickerIsOpen(false)
+            }
+            else if (e.relatedTarget.name !== 'sc-emoji-picker-button') {
+              setEmojiPickerIsOpen(false)
+            }
+          }}
+          onEmojiClick={_handleEmojiPicked}
+          native
+        />
+      }
       <input
         onFocus={() => {
           setInputActive(true)
           setEmojiPickerIsOpen(false)
         }}
-        onBlur={() => setInputActive(false)}
+        onBlur={(e) => {
+          if (e.relatedTarget === null) {
+            setInputActive(false)
+          }
+          else if (e.relatedTarget.name !== 'send-button' && e.relatedTarget.name !== 'sc-emoji-picker-button') {
+            setInputActive(false)
+          }
+        }}
         onKeyPress={handleEnter}
         onChange={handleInputChange}
         value={text}
         placeholder="Escribe tu respuesta..."
-        className={`sc-user-input--text`}
+        className={`sc-user-input--text ${((inputActive || inputHasText) ? 'active' : '')}`}
       />
-      <div className="sc-user-input--buttons">
-        <div className="sc-user-input--button">
-          {showEmoji && <EmojiIcon
-            onClick={toggleEmojiPicker}
-            isActive={emojiPickerIsOpen}
-            tooltip={_renderEmojiPopup()}
-          />}
-        </div>
-        {_renderSendOrFileIcon()}
-      </div>
-    </div>
+      <SendIcon
+        onClick={_submitText}
+        inputActive={inputActive}
+        inputHasText={inputHasText}
+        onBlur={() => setInputActive(false)}
+      />
+    </form>
   )
 }
 

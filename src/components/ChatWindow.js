@@ -62,7 +62,7 @@ const ChatWindow = (props) => {
     <div className={`sc-chat-window ${(isOpen || isWebView) ? 'opened' : 'closed'}`}>
       <Header
         teamName={agentProfile.teamName}
-        imageUrl={agentProfile.imageUrl}
+        teamExplanation={agentProfile.teamExplanation}
         onClose={onClose}
         showCloseButton={!isWebView}
       />

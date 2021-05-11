@@ -1,57 +1,86 @@
 .sc-user-input {
   min-height: 55px;
+  max-height: 200px;
   margin: 0px;
   position: relative;
   bottom: 0;
   display: flex;
-  background-color: #f4f7f9;
+  background-color: #ffffff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  transition: background-color .2s ease,box-shadow .2s ease;
 }
 
 .sc-user-input--text {
+  display: flex;
   background-color: inherit;
-  width: 300px;
   resize: none;
   border: none;
   outline: none;
-  border-bottom-left-radius: 10px;
+
   box-sizing: border-box;
-  padding: 18px;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.33;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  color: #565867;
-  -webkit-font-smoothing: antialiased;
-  max-height: 200px;
-  overflow: scroll;
+  flex-grow:2;
   bottom: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  transition: background-color .2s ease,box-shadow .2s ease;
+
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.83;
+  letter-spacing: normal;
+  color: rgba(0, 0, 0, 0.45);
+
+  transition: color .2s ease;
 }
 
-.sc-user-input--text:empty:before {
-  content: attr(placeholder);
-  display: block; /* For Firefox */
-  color: rgba(86, 88, 103, 0.3);
-  outline: none;
+.sc-user-input--text.active {
+  color: #000000;
+}
+
+.sc-user-input--send-button {
+  display: flex;
+  flex-direction:row;
+  width: 79px;
+  height: 31px;
+  margin-right: 13px;
+  border-radius: 16px;
+  background-color: transparent;
+  border: none;
+  align-self: center;
+  padding: 5px 11px 4px 13px;
+  transition: background-color .2s ease;
+}
+
+.sc-user-input--send-button.active {
+  background-color: #6666ff;
+  cursor: not-allowed;
+}
+
+.sc-user-input--send-button.has-input:hover {
+  background-color: #1c3bcb;
+  cursor: pointer;
+}
+
+.sc-user-input--send-button p {
+  margin: 0px;
+  padding-right: 6px;
+  font-family: 'Lato' !important;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #bfbfbf;
+}
+
+.sc-user-input--send-button.active p {
+  color: #ffffff;
 }
 
 .sc-user-input--buttons {
-  width: 100px;
-  position: absolute;
-  right: 10px;
-  height: 100%;
+  position: relative;
+  float: left;
   display: flex;
-  justify-content: flex-end;
-}
-
-.sc-user-input--button:first-of-type {
-  width: 40px;
 }
 
 .sc-user-input--button {
@@ -70,19 +99,8 @@
   display: none;
 }
 
-.sc-user-input--picker-wrapper {
-  display: flex;
-  flex-direction: column;
-}
 
-.sc-user-input.active {
-  box-shadow: none;
-  background-color: white !important;
-  box-shadow: 0px -5px 20px 0px rgba(150, 165, 190, 0.2);
-}
-
-.sc-user-input--file-icon,
-.sc-user-input--send-icon {
+.sc-user-input--file-icon {
   height: 20px;
   width: 20px;
   cursor: pointer;
@@ -90,18 +108,45 @@
   outline: none;
 }
 
-.sc-user-input--file-icon path,
-.sc-user-input--send-icon path {
+.sc-user-input--file-icon path {
   fill: rgba(86, 88, 103, 0.3);
+  transition: fill .2s ease;
 }
 
-.sc-user-input--file-icon:hover path,
-.sc-user-input--send-icon:hover path {
-  fill: rgba(86, 88, 103, 1);
+.sc-user-input--send-icon {
+  height: 12px;
+  width: 12px;
+  align-self: center;
 }
 
-.sc-user-input--emoji-icon-wrapper,
-.sc-user-input--send-icon-wrapper,
+.sc-user-input--send-icon path {
+  fill: #bfbfbf;
+  transition: fill .2s ease;
+}
+
+.sc-user-input--send-icon.active path {
+  fill: #ffffff;
+}
+
+.sc-user-input--file-icon:hover path {
+  fill: black;
+}
+
+.sc-user-input--file-icon.active path {
+  fill: black;
+}
+
+.sc-user-input--emoji-icon-wrapper {
+  background: none;
+  border: none;
+  padding: 2px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+}
+
 .sc-user-input--file-icon-wrapper {
   background: none;
   border: none;
@@ -110,10 +155,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.sc-user-input--send-icon-wrapper,
-.sc-user-input--file-icon-wrapper {
   flex-direction: row;
 }
 
@@ -129,6 +170,7 @@
 
 .sc-user-input--emoji-icon path, .sc-user-input--emoji-icon circle {
   fill: rgba(86, 88, 103, 0.3);
+  transition: fill .2s ease;
 }
 
 .sc-user-input--emoji-icon-wrapper:focus .sc-user-input--emoji-icon path,
@@ -137,5 +179,5 @@
 .sc-user-input--emoji-icon.active circle,
 .sc-user-input--emoji-icon:hover path,
 .sc-user-input--emoji-icon:hover circle {
-  fill: rgba(86, 88, 103, 1);
+  fill: black;
 }

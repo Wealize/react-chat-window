@@ -1,0 +1,10 @@
+aside.emoji-picker-react{
+    position: absolute !important;
+    bottom: 55px;
+    right: 38px;
+    width: 300px !important;
+    max-height: 260px;
+    height: 260px !important;
+    z-index: 1;
+    transition: 0.2s ease-in-out
+}
