@@ -3,7 +3,9 @@ import React from 'react'
 const SendIcon = (props) => {
   const {
     onClick,
-    inputActive
+    inputActive,
+    inputHasText,
+    onBlur
   } = props
 
   const handleClick = (e) => {
@@ -11,10 +13,17 @@ const SendIcon = (props) => {
     onClick(e)
   }
 
+  const handleBlur = (e) => {
+    e.preventDefault()
+    onBlur(e)
+  }
+
   return (
     <button
-      className={`sc-user-input--send-button ${(inputActive ? 'active' : '')}`}
+      name='send-button'
+      className={`sc-user-input--send-button ${((inputActive || inputHasText) ? 'active' : '')} ${(inputHasText ? 'has-input' : '')}`}
       onClick={handleClick}
+      onBlur={handleBlur}
     >
       <p>Send</p>
       <svg

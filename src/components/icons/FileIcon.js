@@ -2,7 +2,8 @@ import React from 'react'
 
 const FileIcon = (props) => {
   const {
-    onClick
+    onClick,
+    isActive
   } = props
 
   const handleClick = (e) => {
@@ -17,7 +18,7 @@ const FileIcon = (props) => {
     >
       <svg
         version='1.1'
-        className='sc-user-input--file-icon'
+        className={`sc-user-input--file-icon ${(isActive ? 'active' : '')}`}
         xmlns='http://www.w3.org/2000/svg'
         x='0px'
         y='0px'

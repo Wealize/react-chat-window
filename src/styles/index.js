@@ -1,9 +1,10 @@
 import './chat-window.css';
-import './launcher.css';
+import './emoji.css'
+import './fonts.css'
 import './header.css';
+import './launcher.css';
 import './message.css';
-import './user-input.css';
 import './quick-replies.css';
+import './user-input.css';
 import 'react-h5-audio-player/lib/styles.css';
 import 'video-react/dist/video-react.css';
-import './fonts.css'

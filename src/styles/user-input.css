@@ -36,10 +36,6 @@
   color: #000000;
 }
 
-/* .sc-user-input--text::placeholder {
-  line-height: 600px;
-} */
-
 .sc-user-input--send-button {
   display: flex;
   flex-direction:row;
@@ -56,9 +52,10 @@
 
 .sc-user-input--send-button.active {
   background-color: #6666ff;
+  cursor: not-allowed;
 }
 
-.sc-user-input--send-button.active:hover {
+.sc-user-input--send-button.has-input:hover {
   background-color: #1c3bcb;
   cursor: pointer;
 }
@@ -102,10 +99,6 @@
   display: none;
 }
 
-.sc-user-input--picker-wrapper {
-  display: flex;
-  flex-direction: column;
-}
 
 .sc-user-input--file-icon {
   height: 20px;
@@ -117,6 +110,7 @@
 
 .sc-user-input--file-icon path {
   fill: rgba(86, 88, 103, 0.3);
+  transition: fill .2s ease;
 }
 
 .sc-user-input--send-icon {
@@ -135,10 +129,24 @@
 }
 
 .sc-user-input--file-icon:hover path {
-  fill: rgba(86, 88, 103, 1);
+  fill: black;
 }
 
-.sc-user-input--emoji-icon-wrapper,
+.sc-user-input--file-icon.active path {
+  fill: black;
+}
+
+.sc-user-input--emoji-icon-wrapper {
+  background: none;
+  border: none;
+  padding: 2px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+}
+
 .sc-user-input--file-icon-wrapper {
   background: none;
   border: none;
@@ -147,9 +155,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.sc-user-input--file-icon-wrapper {
   flex-direction: row;
 }
 
