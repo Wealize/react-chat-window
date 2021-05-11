@@ -1,3 +1,4 @@
+import './audio.css'
 import './chat-window.css';
 import './emoji.css'
 import './fonts.css'
