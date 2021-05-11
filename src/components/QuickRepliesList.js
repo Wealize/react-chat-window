@@ -17,7 +17,9 @@ const QuickRepliesList = (props) => {
                 className="sc-quick-reply-button"
                 onClick={() => onQuickReplyClicked(qr)}
               >
-                {qr.data[qr.type]}
+                <p>
+                  {qr.data[qr.type]}
+                </p>
               </button>
             </div>
           ))}

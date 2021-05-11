@@ -14,48 +14,46 @@
     "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "lint": "eslint src demo/src",
-    "start": "nwb serve-react-demo",
-    "gh:publish": "nwb build-demo && gh-pages -d demo/dist"
+    "start": "nwb serve-react-demo"
   },
   "dependencies": {
+    "@babel/core": "^7.14.0",
     "@types/react-audio-player": "^0.11.0",
-    "emoji-js": "3.2.2",
-    "gh-pages": "^1.2.0",
-    "htmlparser2": "^6.0.0",
-    "react-h5-audio-player": "^3.6.1",
-    "react-highlight.js": "1.0.5",
-    "react-showdown": "^2.1.0",
-    "socket.io-client": "2.0.3",
+    "emoji-picker-react": "^3.4.4",
+    "react-h5-audio-player": "^3.7.0",
+    "react-highlight.js": "1.0.7",
+    "react-is": "^17.0.2",
+    "react-showdown": "^2.3.0",
     "video-react": "^0.14.1"
   },
   "peerDependencies": {
     "prop-types": "15.5.10",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.4.1"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.13.0",
-    "eslint-plugin-react": "^7.12.4",
-    "nwb": "^0.23.0",
-    "prop-types": "15.5.10",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.4.1"
+    "@babel/eslint-parser": "^7.13.14",
+    "eslint": "^7.25.0",
+    "eslint-plugin-react": "^7.23.2",
+    "inferno": "^7.4.8",
+    "nwb": "^0.25.2",
+    "prop-types": "15.7.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "styled-components": "^5.3.0"
   },
   "author": "Wealize",
-  "homepage": "https://kingofthestack.github.io/react-chat-window/",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kingofthestack/react-chat-window.git"
+    "url": "git+https://github.com/Wealize/react-chat-window"
   },
   "keywords": [
     "react-component"
   ],
   "bugs": {
-    "url": "https://github.com/kingofthestack/react-chat-window/issues"
+    "url": "https://github.com/Wealize/react-chat-window"
   },
   "directories": {
     "lib": "lib"

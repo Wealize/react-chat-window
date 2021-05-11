@@ -5,7 +5,8 @@ import FileMessage from './FileMessage';
 import AudioMessage from './AudioMessage';
 import VideoMessage from './VideoMessage';
 import ImageMessage from './ImageMessage';
-import chatIconUrl from './../../assets/chat-icon.svg';
+import chatbotIcon from './../../assets/chatbot-icon.svg';
+import staffIcon from './../../assets/staff-icon.svg';
 
 
 const Message = (props) => {
@@ -31,13 +32,13 @@ const Message = (props) => {
   return (
       <div className="sc-message">
         <div className={`sc-message--content ${props.message.author === 'me' ? 'sent' : 'received'}`}>
-          <div 
+          {props.message.author === 'them' && <div 
             className="sc-message--avatar"
             style={{
-              backgroundImage: `url(${props.icon || chatIconUrl})`
+              backgroundImage: `url(${props.message.is_chatbot ? chatbotIcon : staffIcon})`
             }}
-          ></div>
-            {_renderMessageOfType(props.message.type)}
+          />}
+          {_renderMessageOfType(props.message.type)}
         </div>
       </div>
   )
