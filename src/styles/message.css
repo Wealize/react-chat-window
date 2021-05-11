@@ -39,7 +39,7 @@
 }
 
 .sc-message--content.sent .sc-message--text {
-  background-color: #4e8cff;
+  background-color: #6666ff;
   color: rgba(255, 255, 255, 0.85);
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -48,7 +48,7 @@
 }
 
 .sc-message--content.received .sc-message--text {
-  background-color: #f4f7f9;
+  background-color: #f0f0ff;
   color: rgba(0, 0, 0, 0.85);
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;

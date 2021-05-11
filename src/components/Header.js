@@ -4,8 +4,8 @@ import closeIcon from './../assets/close-icon.png';
 
 const Header = (props) => {
     const {
-      imageUrl,
       teamName,
+      teamExplanation,
       onClose,
       showCloseButton
     } = props
@@ -13,8 +13,8 @@ const Header = (props) => {
     return (
       <div className="sc-header">
         <div className="sc-header--basic-info">
-          <p className="sc-header--bot-name">FAQ Bot</p>
-          <p className="sc-header--bot-explanation">Explicacion</p>
+          <p className="sc-header--bot-name">{teamName}</p>
+          {teamExplanation && <p className="sc-header--bot-explanation">{teamExplanation}</p>}
         </div>
         {
           showCloseButton && (

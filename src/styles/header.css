@@ -1,6 +1,6 @@
 .sc-header {
-  background: #4e8cff;
-  height: 63px;
+  background: #6666ff;
+  min-height: 63px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding-top: 16px;
@@ -46,9 +46,8 @@
 }
 
 .sc-header--close-button {
-  align-self: baseline;
+  align-self: center;
   display: flex;
-  margin-top: 8px;
   cursor: pointer;
   justify-content: center;
 }
