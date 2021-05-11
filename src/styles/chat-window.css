@@ -29,6 +29,7 @@
   overflow-y: auto;
   background-color: white;
   padding-top: 16px;
+  height: 80%;
 }
 
 @media (max-width: 450px) {
