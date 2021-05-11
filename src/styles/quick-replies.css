@@ -43,6 +43,7 @@
   line-height: normal;
   letter-spacing: normal;
   color: rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
 }
 
 .sc-quick-reply-button:not(:last-child) {
