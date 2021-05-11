@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Adding automatic release]()
+
 ## [1.3.6] - 2021-04-14
 
 - [Fixing padding](https://wealize.atlassian.net/browse/TEC20047-17)
