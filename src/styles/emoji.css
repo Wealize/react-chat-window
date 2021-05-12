@@ -1,8 +1,8 @@
 aside.emoji-picker-react{
     position: absolute !important;
     bottom: 55px;
-    right: 38px;
-    width: 300px !important;
+    left: 0px;
+    width: 70% !important;
     max-height: 260px;
     height: 260px !important;
     z-index: 1;
