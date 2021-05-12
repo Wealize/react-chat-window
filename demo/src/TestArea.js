@@ -7,20 +7,11 @@ class TestArea extends Component {
         <div className="demo-test-area--title">
           <div className="demo-test-area--title-main">react-chat-window demo</div>
         </div>
-        <form
-          className="demo-test-area"
-          onSubmit={(e)=> {
-            e.preventDefault();
-            this.props.onMessage(this.textArea.value);
-            this.textArea.value = '';
-          }}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              this.props.onMessage(this.textArea.value);
-              this.textArea.value = '';
-            }
-          }}
-        >
+        <form className="demo-test-area" onSubmit={(e)=> {
+          e.preventDefault();
+          this.props.onMessage(this.textArea.value);
+          this.textArea.value = '';
+        }}>
           <div className="demo-test-area--preamble">Test the chat window by sending a message:</div>
           <textarea
             ref={(e) => { this.textArea = e; }}
