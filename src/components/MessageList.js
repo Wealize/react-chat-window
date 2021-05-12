@@ -7,11 +7,24 @@ const MessageList = (props) => {
 
   useEffect(() => {
     if (scrollList !== null && scrollList.scrollTop !== scrollList.scrollHeight) {
-      scrollList.scrollTop = scrollList.scrollHeight
-      setScrollList({
-        ...scrollList,
-        scrollTop: scrollList.scrollHeight
-      })
+      const last = props.messages[props.messages.length - 1]
+      const oneLast = props.messages[props.messages.length - 2]
+      
+      if (last.author !== 'them') {
+        scrollList.scrollTop = scrollList.scrollHeight
+        setScrollList({
+          ...scrollList,
+          scrollTop: scrollList.scrollHeight
+        })
+      }
+
+      if (oneLast.author === 'me' && last.author === 'them') {
+        scrollList.scrollTop = scrollList.scrollHeight
+        setScrollList({
+          ...scrollList,
+          scrollTop: scrollList.scrollHeight
+        })
+      }
     }
   }, [props])
 
