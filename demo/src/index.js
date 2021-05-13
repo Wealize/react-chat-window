@@ -20,7 +20,8 @@ class Demo extends Component {
 
   _onMessageWasSent(message) {
     this.setState({
-      messageList: [...this.state.messageList, message]
+      messageList: [...this.state.messageList, message],
+      newMessagesCount: 0
     });
   }
 
