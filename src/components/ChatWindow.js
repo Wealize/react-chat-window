@@ -71,12 +71,12 @@ const ChatWindow = (props) => {
         icon={agentProfile.imageUrl}
       />
 
-      {isLastMessageQuickReply() && (
+      {/* {isLastMessageQuickReply() && (
         <QuickRepliesList
           message={getLastMessage()}
           onQuickReplyClicked={onUserInputSubmit}
         />
-      )}
+      )} */}
       {!isInputHidden() && (
         <UserInput
           onSubmit={onUserInputSubmit}

@@ -26,10 +26,12 @@
 }
 
 .sc-message-list {
-  overflow-y: auto;
+  margin-top: 63px;
+  margin-bottom: 55px;
+  overflow-y: scroll;
   background-color: white;
   padding-top: 16px;
-  height: 80%;
+  height: calc(100% - 63px);
 }
 
 @media (max-width: 450px) {
