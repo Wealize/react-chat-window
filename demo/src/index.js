@@ -41,7 +41,7 @@ class Demo extends Component {
 
   _sendMessage(text) {
     if (text.length > 0) {
-      const newMessagesCount = this.state.isOpen ? this.state.newMessagesCount : this.state.newMessagesCount + 1;
+      const newMessagesCount = this.state.newMessagesCount + 1;
       this.setState({
         newMessagesCount: newMessagesCount,
         messageList: [...this.state.messageList, {
@@ -56,9 +56,14 @@ class Demo extends Component {
 
   _handleClick() {
     this.setState({
-      isOpen: !this.state.isOpen,
-      newMessagesCount: 0
+      isOpen: !this.state.isOpen
     });
+  }
+
+  _handleReadMessages () {
+    this.setState({
+      newMessagesCount: 0
+    })
   }
 
   render() {
@@ -75,6 +80,7 @@ class Demo extends Component {
         onFilesSelected={this._onFilesSelected.bind(this)}
         messageList={this.state.messageList}
         newMessagesCount={this.state.newMessagesCount}
+        handleReadMessages={this._handleReadMessages.bind(this)}
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         showEmoji

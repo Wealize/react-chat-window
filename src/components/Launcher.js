@@ -51,6 +51,10 @@ const Launcher = (props) => {
     }
   }
 
+  const handleScrollDown = () => {
+    props.handleReadMessages()
+  }
+
   const shouldShowWelcomeMessage = () => {
     return (isOpen || props.isWebView) && props.messageList.length === 0
   }
@@ -64,7 +68,7 @@ const Launcher = (props) => {
   }
   
   const shouldShowMessageCount = () => {
-    return props.newMessagesCount > 0 && !isOpen
+    return props.newMessagesCount > 0
   }
 
   const handleConsent = (e) => {
@@ -103,16 +107,18 @@ const Launcher = (props) => {
           />
         ) : (
           <ChatWindow
-            messageList={props.messageList}
-            onUserInputSubmit={props.onMessageWasSent}
-            onFilesSelected={props.onFilesSelected}
             agentProfile={props.agentProfile}
+            count={props.newMessagesCount}
+            handleScrollDown={handleScrollDown}
+            hideUserInputWithQuickReplies={props.hideUserInputWithQuickReplies}
             isOpen={isOpen}
             isWebView={props.isWebView}
+            messageList={props.messageList}
             onClose={handleOnClose}
+            onFilesSelected={props.onFilesSelected}
+            onUserInputSubmit={props.onMessageWasSent}
             showEmoji={props.showEmoji}
             showFileIcon={props.showFileIcon}
-            hideUserInputWithQuickReplies={props.hideUserInputWithQuickReplies}
           />
         )
       }
@@ -122,28 +128,29 @@ const Launcher = (props) => {
 
 
 Launcher.propTypes = {
-  onMessageWasReceived: PropTypes.func,
-  onMessageWasSent: PropTypes.func,
-  newMessagesCount: PropTypes.number,
+  handleClick: PropTypes.func,
+  handleReadMessages: PropTypes.func,
+  hideUserInputWithQuickReplies: PropTypes.bool,
   isOpen: PropTypes.bool,
   isWebView: PropTypes.bool,
-  handleClick: PropTypes.func,
   messageList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
+  newMessagesCount: PropTypes.number,
+  onMessageWasReceived: PropTypes.func,
+  onMessageWasSent: PropTypes.func,
   showEmoji: PropTypes.bool,
   showFileIcon: PropTypes.bool,
-  showWelcomeMessage: PropTypes.func,
-  hideUserInputWithQuickReplies: PropTypes.bool,
-  showStartButton: PropTypes.func
+  showStartButton: PropTypes.func,
+  showWelcomeMessage: PropTypes.func
 }
 
 Launcher.defaultProps = {
-  newMessagesCount: 0,
-  showEmoji: true,
-  showFileIcon: true,
   hideUserInputWithQuickReplies: false,
   isOpen: false,
-  isWebView: false
+  isWebView: false,
+  newMessagesCount: 0,
+  showEmoji: true,
+  showFileIcon: true
 }
 
 export default Launcher

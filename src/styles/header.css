@@ -1,6 +1,8 @@
 .sc-header {
   background: #6666ff;
   min-height: 63px;
+  max-height: 63px;
+  width: 100%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding-top: 16px;
@@ -8,7 +10,7 @@
   padding-left: 16px;
   padding-right: 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,.2);
-  position: relative;
+  position: absolute;
   box-sizing: border-box;
   display: flex;
 }
