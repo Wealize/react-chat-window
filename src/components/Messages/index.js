@@ -30,7 +30,7 @@ const Message = (props) => {
   }
 
   return (
-      <div className="sc-message">
+      <div className="sc-message" id={`message-${props.messageId}`}>
         <div className={`sc-message--content ${props.message.author === 'me' ? 'sent' : 'received'}`}>
           {props.message.author === 'them' && <div 
             className="sc-message--avatar"

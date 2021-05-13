@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Handling scrolling of the message list]()
+
 ## [1.3.10] - 2021-05-13
 
 - [Fix show welcome message function]()
