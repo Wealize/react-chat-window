@@ -26,7 +26,4 @@ export default [
     { type: 'text', author: 'me', data: { text: 'Should I?' } },
     { type: 'emoji', author: 'me', data: { emoji: '🙊' } },
   ]},
-  {type: 'text', author: 'them',is_chatbot: true,  data: { text: "You've got to have a story."} },
-  {type: 'text', author: 'them',is_chatbot: true,  data: { text: "You've got to have a story."} },
-  {type: 'text', author: 'them',is_chatbot: true,  data: { text: "You've got to have a story."} },
 ];

@@ -8,16 +8,18 @@ import QuickRepliesList from './QuickRepliesList';
 
 const ChatWindow = (props) => {
   const {
-    messageList,
     agentProfile,
+    count,
+    handleScrollDown,
+    hideUserInputWithQuickReplies,
     isOpen,
     isWebView,
+    messageList,
     onClose,
-    showEmoji,
-    showFileIcon,
-    onUserInputSubmit,
     onFilesSelected,
-    hideUserInputWithQuickReplies,
+    onUserInputSubmit,
+    showEmoji,
+    showFileIcon
   } = props
 
 
@@ -67,16 +69,17 @@ const ChatWindow = (props) => {
         showCloseButton={!isWebView}
       />
       <MessageList
+        count={count}
+        handleScrollDown={handleScrollDown}
         messages={messageList}
-        icon={agentProfile.imageUrl}
       />
 
-      {/* {isLastMessageQuickReply() && (
+      {isLastMessageQuickReply() && (
         <QuickRepliesList
           message={getLastMessage()}
           onQuickReplyClicked={onUserInputSubmit}
         />
-      )} */}
+      )}
       {!isInputHidden() && (
         <UserInput
           onSubmit={onUserInputSubmit}
@@ -90,16 +93,18 @@ const ChatWindow = (props) => {
 }
 
 ChatWindow.propTypes = {
-  messageList: PropTypes.array,
   agentProfile: PropTypes.object.isRequired,
+  count: PropTypes.number,
+  handleScrollDown: PropTypes.func,
+  hideUserInputWithQuickReplies: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   isWebView: PropTypes.bool,
+  messageList: PropTypes.array,
   onClose: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func,
   onUserInputSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
-  showFileIcon: PropTypes.bool,
-  hideUserInputWithQuickReplies: PropTypes.bool
+  showFileIcon: PropTypes.bool
 }
 
 ChatWindow.defaultProps = {

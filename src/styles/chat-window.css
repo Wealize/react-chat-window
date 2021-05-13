@@ -34,6 +34,10 @@
   height: calc(100% - 63px);
 }
 
+.sc-message-list.quick-reply {
+  margin-bottom: 0px;
+}
+
 @media (max-width: 450px) {
   .sc-chat-window {
     width: 100vw;
