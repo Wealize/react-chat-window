@@ -52,7 +52,7 @@ const Launcher = (props) => {
   }
 
   const shouldShowWelcomeMessage = () => {
-    return (!isOpen || props.isWebView) && props.messageList.length === 0
+    return (isOpen || props.isWebView) && props.messageList.length === 0
   }
 
   const shouldShowConsent = () => {
