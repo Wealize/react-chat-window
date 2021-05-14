@@ -10,19 +10,56 @@ const MessageList = (props) => {
     messages
   } = props
 
-  const [firstTime, setFirstTime] = useState(false)
   const divRef = useRef()
+  const [firstTime, setFirstTime] = useState(false)
 
   useEffect(() => {
-    const idLastMessage = messages.length - 1
-    var element = document.getElementById(`message-${idLastMessage}`)
+    if ((count === 0 || count === 1) && firstTime === false) {
+      console.log('sin mensajes primera vez')
+      const idLastMessage = messages.length - 1
+      const element = document.getElementById(`message-${idLastMessage}`)
 
-    if (count === 0 || count === 1 || firstTime === false) {
-      setFirstTime(true)
-      divRef.current.scrollTop = element.offsetTop + element.offsetHeight
-    } else if (count > 1) {
-      if (messages[idLastMessage].author === 'me') {
+      if (divRef && element) {
         divRef.current.scrollTop = element.offsetTop + element.offsetHeight
+      }
+
+      setFirstTime(true)
+    } else if (count > 1 && firstTime === false){
+      console.log('con mensajes primera vez')
+      console.log(document.getElementById(`message-${messages.length - 1}`))
+      var offset = 0
+
+      for (var i = 0; i < count; i++) {
+        offset += document.getElementById(`message-${messages.length - 1 - i}`).offsetHeight + 8
+      }
+
+      console.log('con mensajes')
+  
+      if (divRef) {
+        divRef.current.scrollTop = divRef.current.scrollTopMax - offset
+      }
+
+      setFirstTime(true)
+    }
+    else if ((count === 0 || count === 1) && firstTime === true) {
+      console.log('sin mensajes')
+      const idLastMessage = messages.length - 1
+      const element = document.getElementById(`message-${idLastMessage}`)
+
+      if (divRef && element) {
+        divRef.current.scrollTop = element.offsetTop + element.offsetHeight
+      }
+    }
+    else if (count > 1 && firstTime === true) {
+      console.log('con mensajes')
+      var offset = 0
+
+      for (var i = 0; i < count; i++) {
+        offset += document.getElementById(`message-${messages.length - 1 - i}`).offsetHeight + 8
+      }
+  
+      if (divRef) {
+        divRef.current.scrollTop = divRef.current.scrollTopMax - offset
       }
     }
   }, [props])
@@ -43,7 +80,7 @@ const MessageList = (props) => {
       <div
         className={`sc-message-list ${isLastMessageQuickReply() && 'quick-reply'}`}
         onScroll={(e) => {
-          if (count > 1 && firstTime === true && divRef.current.scrollTop === divRef.current.scrollTopMax) {
+          if (count > 1 && firstTime === true && e.currentTarget.scrollTop === e.currentTarget.scrollTopMax) {
             handleScrollDown()
           }
         }}
