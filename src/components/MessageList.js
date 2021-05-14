@@ -15,7 +15,6 @@ const MessageList = (props) => {
 
   useEffect(() => {
     if ((count === 0 || count === 1) && firstTime === false) {
-      console.log('sin mensajes primera vez')
       const idLastMessage = messages.length - 1
       const element = document.getElementById(`message-${idLastMessage}`)
 
@@ -25,16 +24,12 @@ const MessageList = (props) => {
 
       setFirstTime(true)
     } else if (count > 1 && firstTime === false){
-      console.log('con mensajes primera vez')
-      console.log(document.getElementById(`message-${messages.length - 1}`))
       var offset = 0
 
       for (var i = 0; i < count; i++) {
         offset += document.getElementById(`message-${messages.length - 1 - i}`).offsetHeight + 8
       }
 
-      console.log('con mensajes')
-  
       if (divRef) {
         divRef.current.scrollTop = divRef.current.scrollTopMax - offset
       }
@@ -42,7 +37,6 @@ const MessageList = (props) => {
       setFirstTime(true)
     }
     else if ((count === 0 || count === 1) && firstTime === true) {
-      console.log('sin mensajes')
       const idLastMessage = messages.length - 1
       const element = document.getElementById(`message-${idLastMessage}`)
 
@@ -51,7 +45,6 @@ const MessageList = (props) => {
       }
     }
     else if (count > 1 && firstTime === true) {
-      console.log('con mensajes')
       var offset = 0
 
       for (var i = 0; i < count; i++) {

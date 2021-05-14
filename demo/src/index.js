@@ -27,7 +27,6 @@ class Demo extends Component {
 
   _onFilesSelected(fileList) {
     const objectURL = window.URL.createObjectURL(fileList[0]);
-    console.log(fileList[0].type)
 
     this.setState({
       messageList: [...this.state.messageList, {
