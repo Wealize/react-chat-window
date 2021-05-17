@@ -38,16 +38,18 @@ const MessageList = (props) => {
 
     if (lastMessage === null || lastMessage === undefined) {
       return false
-    } else if (lastMessage.quickReplies === undefined || lastMessage.quickReplies === null) {
-      return false
-    } else {
+    }
+
+    if (lastMessage.quickReplies && lastMessage.quickReplies.length > 0) {
       return true
+    } else {
+      return false
     }
   }
 
   return (
       <div
-        className={`sc-message-list ${isLastMessageQuickReply() && 'quick-reply'}`}
+        className={`sc-message-list ${isLastMessageQuickReply() ? 'quick-reply' : ''}`}
         onScroll={(e) => {
           if (count > 0 && e.currentTarget.scrollTop === e.currentTarget.scrollTopMax) {
             handleScrollDown()
