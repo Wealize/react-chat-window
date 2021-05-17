@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import Message from './Messages';
 
@@ -10,19 +10,25 @@ const MessageList = (props) => {
     messages
   } = props
 
-  const [firstTime, setFirstTime] = useState(false)
   const divRef = useRef()
 
   useEffect(() => {
-    const idLastMessage = messages.length - 1
-    var element = document.getElementById(`message-${idLastMessage}`)
+    if (count === 0 || count === 1) {
+      const idLastMessage = messages.length - 1
+      const element = document.getElementById(`message-${idLastMessage}`)
 
-    if (count === 0 || count === 1 || firstTime === false) {
-      setFirstTime(true)
-      divRef.current.scrollTop = element.offsetTop + element.offsetHeight
-    } else if (count > 1) {
-      if (messages[idLastMessage].author === 'me') {
+      if (divRef && element) {
         divRef.current.scrollTop = element.offsetTop + element.offsetHeight
+      }
+    } else if (count > 1){
+      var offset = 0
+
+      for (var i = 0; i < count; i++) {
+        offset += document.getElementById(`message-${messages.length - 1 - i}`).offsetHeight + 8
+      }
+
+      if (divRef) {
+        divRef.current.scrollTop = divRef.current.scrollTopMax - offset
       }
     }
   }, [props])
@@ -32,18 +38,20 @@ const MessageList = (props) => {
 
     if (lastMessage === null || lastMessage === undefined) {
       return false
-    } else if (lastMessage.quickReplies === undefined || lastMessage.quickReplies === null) {
-      return false
-    } else {
+    }
+
+    if (lastMessage.quickReplies && lastMessage.quickReplies.length > 0) {
       return true
+    } else {
+      return false
     }
   }
 
   return (
       <div
-        className={`sc-message-list ${isLastMessageQuickReply() && 'quick-reply'}`}
+        className={`sc-message-list ${isLastMessageQuickReply() ? 'quick-reply' : ''}`}
         onScroll={(e) => {
-          if (count > 1 && firstTime === true && divRef.current.scrollTop === divRef.current.scrollTopMax) {
+          if (count > 0 && e.currentTarget.scrollTop === e.currentTarget.scrollTopMax) {
             handleScrollDown()
           }
         }}
