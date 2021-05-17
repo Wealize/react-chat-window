@@ -38,10 +38,12 @@ const ChatWindow = (props) => {
 
     if (lastMessage === null || lastMessage === undefined) {
       return false
-    } else if (lastMessage.quickReplies === undefined || lastMessage.quickReplies === null) {
-      return false
-    } else {
+    }
+    
+    if (lastMessage.quickReplies && lastMessage.quickReplies.length > 0) {
       return true
+    } else {
+      return false
     }
   }
 
