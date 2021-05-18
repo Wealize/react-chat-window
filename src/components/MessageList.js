@@ -28,7 +28,7 @@ const MessageList = (props) => {
       }
 
       if (divRef) {
-        divRef.current.scrollTop = divRef.current.scrollTopMax - offset
+        divRef.current.scrollTop = divRef.current.scrollHeight - divRef.current.offsetHeight - offset
       }
     }
   }, [props])
