@@ -51,7 +51,7 @@ const MessageList = (props) => {
       <div
         className={`sc-message-list ${isLastMessageQuickReply() ? 'quick-reply' : ''}`}
         onScroll={(e) => {
-          if (count > 0 && e.currentTarget.scrollTop === e.currentTarget.scrollTopMax) {
+          if (count > 0 && e.currentTarget.scrollTop === (e.currentTarget.scrollHeight - e.currentTarget.offsetHeight)) {
             handleScrollDown()
           }
         }}
