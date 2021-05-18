@@ -1,5 +1,6 @@
 * {
   font-family: 'Dm Sans' !important;
+  -webkit-font-smoothing: antialiased;
 }
 
 .sc-chat-window {
