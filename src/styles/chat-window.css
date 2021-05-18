@@ -29,7 +29,7 @@
 .sc-message-list {
   margin-top: 63px;
   margin-bottom: 55px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
   background-color: white;
