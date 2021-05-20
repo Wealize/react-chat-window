@@ -19,7 +19,8 @@ const ChatWindow = (props) => {
     onFilesSelected,
     onUserInputSubmit,
     showEmoji,
-    showFileIcon
+    showFileIcon,
+    verticalQuickReplies
   } = props
 
 
@@ -80,6 +81,7 @@ const ChatWindow = (props) => {
         <QuickRepliesList
           message={getLastMessage()}
           onQuickReplyClicked={onUserInputSubmit}
+          verticalQuickReplies={verticalQuickReplies}
         />
       )}
       {!isInputHidden() && (
@@ -106,7 +108,8 @@ ChatWindow.propTypes = {
   onFilesSelected: PropTypes.func,
   onUserInputSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
-  showFileIcon: PropTypes.bool
+  showFileIcon: PropTypes.bool,
+  verticalQuickReplies: PropTypes.bool
 }
 
 ChatWindow.defaultProps = {

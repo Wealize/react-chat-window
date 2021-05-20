@@ -25,7 +25,7 @@ const SendIcon = (props) => {
       onClick={handleClick}
       onBlur={handleBlur}
     >
-      <p>Send</p>
+      <p>Enviar</p>
       <svg
         version='1.1'
         className={`sc-user-input--send-icon ${(inputActive ? 'active' : '')}`}
