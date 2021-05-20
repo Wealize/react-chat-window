@@ -4,7 +4,7 @@
 }
 
 .sc-quick-replies-block.vertical {
-  justify-content: right;
+  justify-content: flex-end;
 }
 
 .sc-quick-replies-block.visible {
@@ -52,7 +52,7 @@
 
 .sc-quick-reply.vertical {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
 } 
 
 .sc-quick-reply-button {

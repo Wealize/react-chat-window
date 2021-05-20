@@ -26,7 +26,6 @@ export default [
     { type: 'text', author: 'me', data: { text: 'Should I?' } },
     { type: 'emoji', author: 'me', data: { emoji: '🙊' } },
     { type: 'text', author: 'me', data: { text: 'Should I?' } },
-    { type: 'text', author: 'me', data: { text: 'Should I?' } },
-    { type: 'text', author: 'me', data: { text: 'Should I?' } },
+    { type: 'text', author: 'me', data: { text: 'Should I?' } }
   ]},
 ];
