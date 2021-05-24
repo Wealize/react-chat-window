@@ -25,7 +25,5 @@ export default [
   {type: 'text', author: 'them', is_chatbot: true, data: { text: 'Tell me your story!' }, quickReplies: [
     { type: 'text', author: 'me', data: { text: 'Should I?' } },
     { type: 'emoji', author: 'me', data: { emoji: '🙊' } },
-    { type: 'text', author: 'me', data: { text: 'Should I?' } },
-    { type: 'text', author: 'me', data: { text: 'Should I?' } }
   ]},
 ];

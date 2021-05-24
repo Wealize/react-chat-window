@@ -11,10 +11,9 @@ const QuickRepliesList = (props) => {
     return (
       <div
         className={
-          `sc-quick-replies-block
-          ${verticalQuickReplies ? 'vertical' : ''}
-          ${(message.quickReplies && message.quickReplies.length > 0) ? 'visible' : 'hidden'}
-          `
+          `sc-quick-replies-block ${
+            verticalQuickReplies ? 'vertical' : ''
+          } ${(message.quickReplies && message.quickReplies.length > 0) ? 'visible' : 'hidden'}`
         }
       >
         <div className={`sc-quick-replies ${verticalQuickReplies ? 'vertical' : ''}`}>
