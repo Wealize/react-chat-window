@@ -13,7 +13,7 @@
   "scripts": {
     "build": "nwb build-react-component --copy-files --no-demo",
     "clean": "nwb clean-module",
-    "start": "nwb serve-react-demo"
+    "dev": "nwb serve-react-demo"
   },
   "dependencies": {
     "@babel/core": "^7.14.0",
