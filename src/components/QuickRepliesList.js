@@ -4,14 +4,21 @@ import PropTypes from 'prop-types'
 const QuickRepliesList = (props) => {
     const {
       message,
-      onQuickReplyClicked
+      onQuickReplyClicked,
+      verticalQuickReplies
     } = props
 
     return (
-      <div className={['sc-quick-replies-block', ((message.quickReplies && message.quickReplies.length > 0) ? 'visible' : 'hidden')].join(' ')}>
-        <div className='sc-quick-replies'>
+      <div
+        className={
+          `sc-quick-replies-block ${
+            verticalQuickReplies ? 'vertical' : ''
+          } ${(message.quickReplies && message.quickReplies.length > 0) ? 'visible' : 'hidden'}`
+        }
+      >
+        <div className={`sc-quick-replies ${verticalQuickReplies ? 'vertical' : ''}`}>
           {message.quickReplies.map((qr, i) => (
-            <div key={i} className='sc-quick-reply'>
+            <div key={i} className={`sc-quick-reply ${verticalQuickReplies ? 'vertical' : ''}`}>
               <button
                 key={i}
                 className="sc-quick-reply-button"
@@ -31,6 +38,7 @@ const QuickRepliesList = (props) => {
 QuickRepliesList.propTypes = {
   message: PropTypes.object,
   onQuickReplyClicked: PropTypes.func,
+  verticalQuickReplies: PropTypes.bool
 }
 
 QuickRepliesList.defaultProps = {

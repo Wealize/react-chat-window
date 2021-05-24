@@ -119,6 +119,7 @@ const Launcher = (props) => {
             onUserInputSubmit={props.onMessageWasSent}
             showEmoji={props.showEmoji}
             showFileIcon={props.showFileIcon}
+            verticalQuickReplies={props.verticalQuickReplies}
           />
         )
       }
@@ -141,7 +142,8 @@ Launcher.propTypes = {
   showEmoji: PropTypes.bool,
   showFileIcon: PropTypes.bool,
   showStartButton: PropTypes.func,
-  showWelcomeMessage: PropTypes.func
+  showWelcomeMessage: PropTypes.func,
+  verticalQuickReplies: PropTypes.bool
 }
 
 Launcher.defaultProps = {
@@ -150,7 +152,8 @@ Launcher.defaultProps = {
   isWebView: false,
   newMessagesCount: 0,
   showEmoji: true,
-  showFileIcon: true
+  showFileIcon: true,
+  verticalQuickReplies: false
 }
 
 export default Launcher

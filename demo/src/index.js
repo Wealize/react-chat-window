@@ -76,6 +76,7 @@ class Demo extends Component {
           teamName: 'My bot',
           teamExplanation: 'A bot'
         }}
+        verticalQuickReplies={true}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
         onFilesSelected={this._onFilesSelected.bind(this)}
         messageList={this.state.messageList}

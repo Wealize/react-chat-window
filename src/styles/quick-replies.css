@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.sc-quick-replies-block.vertical {
+  justify-content: flex-end;
+}
+
 .sc-quick-replies-block.visible {
   display: flex;
 }
@@ -17,6 +21,10 @@
   scrollbar-width: thin;
   margin-bottom: 55px;
 }
+
+.sc-quick-replies.vertical {
+  display: inline-grid;
+} 
 
 .sc-quick-replies::-webkit-scrollbar {
   height: 7px;
@@ -39,9 +47,13 @@
 
 .sc-quick-reply {
     display: inline-block;
-    vertical-align: middle;
     padding: 0px 12px 8px;
 }
+
+.sc-quick-reply.vertical {
+  display: flex;
+  justify-content: flex-end;
+} 
 
 .sc-quick-reply-button {
   display: block;
