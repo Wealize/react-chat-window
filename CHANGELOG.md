@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Vertical quick replies. Change button text](https://wealize.atlassian.net/browse/MAL-244)
+
 ## [1.4.2 - 2021-05-18]
 
 - [Update scrollbars styles]()
