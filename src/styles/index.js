@@ -1,5 +1,6 @@
 import './audio.css'
 import './chat-window.css';
+import './icons.css'
 import './emoji.css'
 import './fonts.css'
 import './header.css';

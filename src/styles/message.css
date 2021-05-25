@@ -15,17 +15,6 @@
   justify-content: flex-end;
 }
 
-.sc-message--avatar {
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  align-self: flex-start;
-  margin-right: 8px;
-}
-
 .sc-message--text {
   padding: 8px;
   width: fit-content;
