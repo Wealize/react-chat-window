@@ -2,7 +2,7 @@
 
 `@wealize/react-chat-window` provides an intercom-like chat window that can be included easily in any project for free. It provides no messaging facilities, only the view component.
 
-![Version](https://img.shields.io/badge/version-1.4.3-blue)
+![Version](https://img.shields.io/badge/version-1.4.4-blue)
 <a href="https://www.npmjs.com/package/@wealize/react-chat-window" target="\_parent">
   <img alt="" src="https://img.shields.io/npm/dm/@wealize/react-chat-window" />
 </a>
