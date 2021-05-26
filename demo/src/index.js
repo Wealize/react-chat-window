@@ -47,7 +47,7 @@ class Demo extends Component {
         messageList: [...this.state.messageList, {
           author: 'them',
           type: 'text',
-          is_chatbot: true,
+          is_chatbot: false,
           data: { text }
         }]
       });
@@ -76,7 +76,7 @@ class Demo extends Component {
           teamName: 'My bot',
           teamExplanation: 'A bot'
         }}
-        verticalQuickReplies={true}
+        verticalQuickReplies={false}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
         onFilesSelected={this._onFilesSelected.bind(this)}
         messageList={this.state.messageList}
