@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Refinamiento webchat](https://wealize.atlassian.net/browse/MAL-245)
+    - [Theme](https://wealize.atlassian.net/browse/MAL-246)
+
 ## [1.4.3 - 2021-05-24]
 
 - [Vertical quick replies. Change button text](https://wealize.atlassian.net/browse/MAL-244)
